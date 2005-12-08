@@ -1,0 +1,6 @@
+1) a mini-shell for command-line processing
+2) a GUI-based frontend
+3) setArist(Audio::TagLib::String) -> setArist(PV)
+4) overload q("") => sub{ shift->toCString(); } for Audio::TagLib::String
+5) overload q("") => sub{ shift->data(); } for Audio::TagLib::ByteVector
+6) implement q(=) for some classes
