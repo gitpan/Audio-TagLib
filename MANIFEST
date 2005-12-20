@@ -2,6 +2,8 @@ Bugs
 Changes
 INSTALL
 LICENSE
+LICENSE.GPL
+LICENSE.Artistic
 Makefile.PL
 MANIFEST
 ppport.h

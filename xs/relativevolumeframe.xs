@@ -63,38 +63,39 @@ PPCODE:
 		XSRETURN(1);
 	case G_ARRAY:
 		if(l.size() != 0) {
+			EXTEND(SP, l.size());
 			for(int i = 0; i < l.size(); i++) {
 				switch(l[i]) {
 				case TagLib::ID3v2::RelativeVolumeFrame::Other:
-					ST(i) = sv_2mortal(newSVpv("Other", 0));
+					PUSHs(sv_2mortal(newSVpv("Other", 0)));
 					break;
 				case TagLib::ID3v2::RelativeVolumeFrame::MasterVolume:
-					ST(i) = sv_2mortal(newSVpv("MasterVolume", 0));
+					PUSHs(sv_2mortal(newSVpv("MasterVolume", 0)));
 					break;
 				case TagLib::ID3v2::RelativeVolumeFrame::FrontRight:
-					ST(i) = sv_2mortal(newSVpv("FrontRight", 0));
+					PUSHs(sv_2mortal(newSVpv("FrontRight", 0)));
 					break;
 				case TagLib::ID3v2::RelativeVolumeFrame::FrontLeft:
-					ST(i) = sv_2mortal(newSVpv("FrontLeft", 0));
+					PUSHs(sv_2mortal(newSVpv("FrontLeft", 0)));
 					break;
 				case TagLib::ID3v2::RelativeVolumeFrame::BackRight:
-					ST(i) = sv_2mortal(newSVpv("BackRight", 0));
+					PUSHs(sv_2mortal(newSVpv("BackRight", 0)));
 					break;
 				case TagLib::ID3v2::RelativeVolumeFrame::BackLeft:
-					ST(i) = sv_2mortal(newSVpv("BackLeft", 0));
+					PUSHs(sv_2mortal(newSVpv("BackLeft", 0)));
 					break;
 				case TagLib::ID3v2::RelativeVolumeFrame::FrontCentre:
-					ST(i) = sv_2mortal(newSVpv("FrontCentre", 0));
+					PUSHs(sv_2mortal(newSVpv("FrontCentre", 0)));
 					break;
 				case TagLib::ID3v2::RelativeVolumeFrame::BackCentre:
-					ST(i) = sv_2mortal(newSVpv("BackCentre", 0));
+					PUSHs(sv_2mortal(newSVpv("BackCentre", 0)));
 					break;
 				default:
 					/* TagLib::ID3v2::RelativeVolumeFrame */
-					ST(i) = sv_2mortal(newSVpv("Subwoofer", 0));
+					PUSHs(sv_2mortal(newSVpv("Subwoofer", 0)));
 				}
 			}
-			XSRETURN(l.size());
+			//XSRETURN(l.size());
 		} else
 			XSRETURN_EMPTY;
 	default:

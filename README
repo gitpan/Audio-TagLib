@@ -1,4 +1,4 @@
-TagLib Perl module version 1.4
+TagLib Perl module version 1.4.1
 ===================
 
 PREFACE
@@ -45,7 +45,7 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  TagLib version 1.4 (C/C++ lib)
+  TagLib version 1.4.* (C/C++ lib)
   Currently ONLY available on Linux
 
 COPYRIGHT AND LICENCE

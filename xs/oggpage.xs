@@ -105,6 +105,8 @@ TagLib::Ogg::Page::paginate(packets, strategy, streamSerialNumber, firstPage, fi
 	bool firstPacketContinued
 	bool lastPacketCompleted
 	bool containsLastPacket
+PREINIT:
+	SV * sv;
 INIT:
 	TagLib::List<TagLib::Ogg::Page *> l = TagLib::Ogg::Page::paginate(
 		*packets, strategy, streamSerialNumber, firstPage, 
@@ -117,13 +119,16 @@ PPCODE:
 		XSRETURN(1);
 	case G_ARRAY:
 		if(0 < l.size()) {
+			EXTEND(SP, l.size());
 			for(int i = 0; i < l.size(); i++) {
-				ST(i) = sv_newmortal();
-				sv_setref_pv(ST(i), "Audio::TagLib::Ogg::Page", 
+				sv = sv_newmortal();
+				sv_setref_pv(sv, "Audio::TagLib::Ogg::Page", 
 					(void *)l[i]);
 				/* READONLY_off here */
+				PUSHs(sv);
+				sv = NULL;
 			}
-			XSRETURN(l.size());
+			//XSRETURN(l.size());
 		} else
 			XSRETURN_EMPTY;
 	default:

@@ -41,10 +41,11 @@ PPCODE:
 		ST(0) = sv_2mortal(newSVuv(l.size()));
 		XSRETURN(1);
 	case G_ARRAY:
+		EXTEND(SP, l.size());
 		if(0 < l.size()) {
 			for(int i = 0; i < l.size(); i++)
-				ST(i) = sv_2mortal(newSViv(l[i]));
-			XSRETURN(l.size());
+				PUSHs(sv_2mortal(newSViv(l[i])));
+			//XSRETURN(l.size());
 		} else
 			XSRETURN_EMPTY;
 	default:

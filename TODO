@@ -1,4 +1,8 @@
-1) a mini-shell for command-line processing
+1) a mini-shell for command-line processing (a separate module)
+     Audio::TagLib::Shell
+     >open <file>
+     >...
+     >close
 2) a GUI-based frontend
 3) setArist(Audio::TagLib::String) -> setArist(PV)
 4) overload q("") => sub{ shift->toCString(); } for Audio::TagLib::String

@@ -7,7 +7,7 @@ BEGIN {
     print STDOUT "ONLY support TagLib version 1.4.* on Linux\n";
     require Carp;
     Carp::croak("currently only support Linux\n") 
-      unless $^O = 'linux';
+      unless $^O eq 'linux';
     our $libpath = qx(taglib-config --prefix);
     chomp($libpath);
     our $incpath = $libpath . "/include/taglib";
