@@ -74,7 +74,7 @@ L<Audio::TagLib|Audio::TagLib> L<AudioProperties|Audio::TagLib::AudioProperties>
 
 =head1 AUTHOR
 
-Dongxu Ma, E<lt>dongxu.ma@gmail.comE<gt>
+Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 

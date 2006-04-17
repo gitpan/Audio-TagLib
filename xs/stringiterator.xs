@@ -2,7 +2,6 @@
 #include "tbytevector.h"
 #include "tmap.h"
 #include "tlist.h"
-#include "iconv.h"
 
 MODULE = TagLib			PACKAGE = TagLib::String::Iterator
 PROTOTYPES: ENABLE
@@ -62,7 +61,7 @@ PPCODE:
 	inbuf = (char *)&data;
 	outbuf = utf8;
 	iconv(codec, NULL, NULL, NULL, NULL);
-	if(iconv(codec, &inbuf, &inlen, &outbuf, &outlen) == -1)
+	if(iconv_wrap(codec, &inbuf, &inlen, &outbuf, &outlen) == -1)
 		croak("iconv failed");
 	utf8[1024-outlen] = '\0';
 	iconv_close(codec);

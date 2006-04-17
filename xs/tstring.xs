@@ -1,5 +1,4 @@
 #include "tstring.h"
-#include "iconv.h"
 
 MODULE = TagLib		PACKAGE = TagLib::String
 PROTOTYPES: ENABLE
@@ -144,7 +143,7 @@ CODE:
 			inbuf  = SvPVX(ST(1));
 			outbuf = utf8;
 			iconv(codec, NULL, NULL, NULL, NULL);
-			if(iconv(codec, &inbuf, &inlen, &outbuf, &outlen) == -1) {
+			if(iconv_wrap(codec, &inbuf, &inlen, &outbuf, &outlen) == -1) {
 				sprintf(errmsg, "error converting from %s to UTF8", 
 					fromcode);
 				delete [] utf8;
@@ -339,7 +338,7 @@ CODE:
 		croak("iconv_open failed in String::_toArray");
 	iconv(codec, NULL, NULL, NULL, NULL);
 	//printf("inlen = %d, outlen = %d\n", inlen, outlen);
-	if(iconv(codec, &inbuf, &inlen, &outbuf, &outlen) == -1)
+	if(iconv_wrap(codec, &inbuf, &inlen, &outbuf, &outlen) == -1)
 		croak("iconv failed in String::_toArray");
 	iconv_close(codec);
 	mb[8-outlen] = '\0';

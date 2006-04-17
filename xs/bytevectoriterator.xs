@@ -2,7 +2,6 @@
 #include "tbytevector.h"
 #include "tmap.h"
 #include "tlist.h"
-#include "iconv.h"
 
 MODULE = TagLib			PACKAGE = TagLib::ByteVector::Iterator
 PROTOTYPES: ENABLE

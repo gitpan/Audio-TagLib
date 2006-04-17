@@ -8,6 +8,7 @@ Makefile.PL
 MANIFEST
 ppport.h
 README
+include/iconv_wrap.h
 sample/Discontent.mp3
 sample/Discontent.ogg
 sample/NOTE

@@ -1,7 +1,6 @@
 #include "tbytevector.h"
 #include "tmap.h"
 #include "tlist.h"
-#include "iconv.h"
 #include "id3v1genres.h"
 
 MODULE = TagLib			PACKAGE = TagLib::ID3v1::GenreMap::Iterator

@@ -88,7 +88,7 @@ L<Audio::TagLib|Audio::TagLib> L<TextIdentificationFrame|Audio::TagLib::ID3v2::T
 
 =head1 AUTHOR
 
-Dongxu Ma, E<lt>dongxu.ma@gmail.comE<gt>
+Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 

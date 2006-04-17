@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.42';
 
 require XSLoader;
 XSLoader::load('Audio::TagLib', $VERSION);
@@ -168,6 +168,21 @@ Audio::TagLib::Ogg::Vorbis.
 In Perl, nearly the same. It will make one stash be the alias of
 another. Refer to Audio::TagLib::Ogg::Vorbis::File.pm, for instance.
 
+=head1 FUNCTION PROTOTYPE
+
+currently all XS stubs will be imported into Perl namespace with
+specific prototype, just the same as internal functions.
+Prototype triggers a type map sometimes silently since it introduces
+context to each param.
+
+A very simple way to get rid of prototype surrounding:
+
+C<< eval { use __PACKAGE__; 1; } or croak("package import failed:
+$@"); >>
+
+Normally, just C<< require __PACKAGE__; >> since no symbol exported
+from L<TagLib|Audio::TagLib> ;P
+
 =head1 OTHER STUFF YOU SHOULD KNOW
 
 some methods will often return certain internal structure of an
@@ -190,7 +205,7 @@ C/C++ library by Scott Wheeler E<lt>wheeler@kde.orgE<gt> Allan
 Sandfeld Jenson E<lt>kde@carewolf.orgE<gt> and Ismael Orenstein
 E<lt>orenstein@kde.orgE<gt>  
 
-Perl module by Dongxu Ma E<lt>dongxu.ma@gmail.comE<gt>
+Perl module by Dongxu Ma E<lt>dongxu@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 

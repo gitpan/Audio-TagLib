@@ -6,12 +6,14 @@ BEGIN {
     # instead of overloading subs of MakeMaker or other wrapper
     print STDOUT "ONLY support TagLib version 1.4.* on Linux\n";
     require Carp;
+	# FIXME
+	# openned for FreeBSD
     Carp::croak("currently only support Linux\n") 
-      unless $^O eq 'linux';
+      unless $^O eq 'linux' or $^O eq 'freebsd';
     our $libpath = qx(taglib-config --prefix);
     chomp($libpath);
     our $incpath = $libpath . "/include/taglib";
-    $libpath .= "/lib";
+    $libpath .= -d $libpath. "/lib64" ? "/lib64" : "/lib";
     my ($lib) = glob($libpath . "/libtag.so.1.4.*");
     if (defined $lib) {
         print STDOUT "got $lib, good, go on\n";
@@ -30,14 +32,14 @@ WriteMakefile(
     PREREQ_PM         => {}, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Audio/TagLib.pm', # retrieve abstract from module
-       AUTHOR         => 'Dongxu, Ma <dongxu.ma@gmail.com>') : ()),
+       AUTHOR         => 'Dongxu, Ma <dongxu@cpan.org>') : ()),
     CC                => 'g++',
     LD                => 'g++',
     LDDLFLAGS         => "-shared -L${libpath}",
     XSOPT             => '-C++ -hiertype',
     LIBS              => ['-ltag'], # e.g., '-lm'
-    DEFINE            => '-DNO_DOXYGEN', # e.g., '-DHAVE_SOMETHING'
-    INC               => "-I${incpath} -I/usr/include", # e.g., '-I. -I/usr/include/other'
+    DEFINE            => $^O eq 'freebsd' ? '-D_BSD_ICONV -DNO_DOXYGEN' : '-DNO_DOXYGEN', # e.g., '-DHAVE_SOMETHING'
+    INC               => "-I${incpath} -I/usr/include -I./include ", # e.g., '-I. -I/usr/include/other'
 	# Un-comment this if you add C files to link with later:
     # OBJECT            => '$(O_FILES)', # link all the C files too
 );

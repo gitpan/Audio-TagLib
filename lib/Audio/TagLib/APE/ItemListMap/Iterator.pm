@@ -108,7 +108,7 @@ L<ItemListMap|Audio::TagLib::APE::ItemListMap> L<Audio::TagLib|Audio::TagLib>
 
 =head1 AUTHOR
 
-Dongxu Ma, E<lt>dongxu.ma@gmail.comE<gt>
+Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
