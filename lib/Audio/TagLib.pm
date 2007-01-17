@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.42';
+our $VERSION = '1.43';
 
 require XSLoader;
 XSLoader::load('Audio::TagLib', $VERSION);
@@ -183,6 +183,10 @@ $@"); >>
 Normally, just C<< require __PACKAGE__; >> since no symbol exported
 from L<TagLib|Audio::TagLib> ;P
 
+=head1 THREAD SAFETY
+
+Currently NOT implemented.
+
 =head1 OTHER STUFF YOU SHOULD KNOW
 
 some methods will often return certain internal structure of an
@@ -199,21 +203,20 @@ F<http://developer.kde.org/~wheeler/taglib.html>
 
 Refer to I<Bugs> in the top level of the package
 
+=head1 CREDITS
+
+Scott Wheeler E<lt>wheeler@kde.orgE<gt>
+
 =head1 AUTHOR
 
-C/C++ library by Scott Wheeler E<lt>wheeler@kde.orgE<gt> Allan
-Sandfeld Jenson E<lt>kde@carewolf.orgE<gt> and Ismael Orenstein
-E<lt>orenstein@kde.orgE<gt>  
-
-Perl module by Dongxu Ma E<lt>dongxu@cpan.orgE<gt>
+Dongxu Ma E<lt>dongxu@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005 - 2006 by Dongxu Ma
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.7 or,
-at your option, any later version of Perl 5 you may have available.
+it under the same terms as Perl itself.
 
 
 =cut

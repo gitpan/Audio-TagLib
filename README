@@ -1,4 +1,4 @@
-TagLib Perl module version 1.4.1
+TagLib Perl binding
 ===================
 
 PREFACE
@@ -50,7 +50,7 @@ This module requires these other modules and libraries:
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005 - 2006 by Dongxu Ma
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,
