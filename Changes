@@ -1,5 +1,10 @@
 Revision history for Perl extension TagLib.
 
+1.50_01 10.07.2009
+    - patch from CHOCOLATE _at_ cpan dot org (#36560)
+    - patch from Spr _at_ cpan dot org (#24410)
+    - enable build for taglib v1.5
+
 1.43 Tu 17.01.07
     - support for MacOSX
     - fix on MakeFile.PL
