@@ -1,7 +1,7 @@
 #include "tbytevector.h"
 #include "string.h"
 
-MODULE = TagLib		PACKAGE = TagLib::ByteVector
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::ByteVector
 PROTOTYPES: 	ENABLE
 
 

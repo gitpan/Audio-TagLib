@@ -1,7 +1,7 @@
 #include "tmap.h"
 #include "id3v1genres.h"
 
-MODULE = TagLib		PACKAGE = TagLib::ID3v1::GenreMap
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::ID3v1::GenreMap
 PROTOTYPES: ENABLE
 
 ################################################################

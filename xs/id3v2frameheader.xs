@@ -1,6 +1,6 @@
 #include "id3v2frame.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::Frame::Header
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::Frame::Header
 PROTOTYPES: ENABLE
 
 ################################################################

@@ -4,12 +4,14 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
 # private hash
 # to query the index of each type
+## no critic (ProhibitMixedCaseVars)
+## no critic (ProhibitPackageVars)
 our %_Type = (
     "Latin1"  => 0,
     "UTF16"   => 1,
@@ -19,18 +21,25 @@ our %_Type = (
 );
 
 use overload
-  q(==) => \&_equal,
-  q(!=) => sub { not shift->_equal(@_); },
-  q(+=) => \&_append,
-  q(<)  => \&_lessThan,
-  q(>)  => sub { not shift->_lessThan(@_); },
-  q("") => sub { shift->_memoAddress(); };
+    q(==) => \&_equal,
+    q(!=) => sub { not shift->_equal(@_); },
+    q(+=) => \&_append,
+    q(<)  => \&_lessThan,
+    q(>)  => sub { not shift->_lessThan(@_); },
+    q("") => sub { shift->_memoAddress(); };
 
-# Preloaded methods go here.
-
+sub type { return \%_Type; }
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -65,13 +74,18 @@ standard.
 
 =item %_Type
 
+Depreciated. See type()
+
+=item type()
+`
 The four types of string encodings supported by the ID3v2
 specification. ID3v1 is assumed to be Latin1 and Ogg Vorbis comments
 use UTF8. 
 
 qw(Latin1 UTF16 UTF16BE UTF16LE UTF8)
 
-C<keys %Audio::TagLib::String::_Type> lists all available values also.
+C<keys %Audio::TagLib::String::type()> returns a reference to an hash
+that lists all available values.
 
 
 B<NOTE> C<binmode STDOUT, ":utf8"> to display UTF8 string.
@@ -230,9 +244,15 @@ L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

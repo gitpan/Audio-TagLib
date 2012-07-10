@@ -1,6 +1,6 @@
 #include "relativevolumeframe.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::RelativeVolumeFrame
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::RelativeVolumeFrame
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -179,7 +179,7 @@ CODE:
 ################################################################
 ################################################################
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::RelativeVolumeFrame::PeakVolume
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::RelativeVolumeFrame::PeakVolume
 PROTOTYPES: ENABLE
 
 ################################################################

@@ -9,26 +9,33 @@ extern "C" {
 #ifdef _BSD_ICONV
     
 size_t iconv_wrap(iconv_t cd,
-		  char **inbuf, size_t *inbytesleft,
-		  char **outbuf, size_t *outbytesleft)
+                  char **inbuf,
+                  size_t *inbytesleft,
+                  char **outbuf,
+                  size_t *outbytesleft)
 {
 	char *in = *inbuf;
-	//const char *in_c = (const char*) in;
 	const char *in_c = const_cast<const char*>(in);
 	return iconv(cd, 
-		     &in_c, inbytesleft,
-		     outbuf, outbytesleft);
+                 &in_c,
+                 inbytesleft,
+                 outbuf,
+                 outbytesleft);
 }
 
 #else
     
 size_t iconv_wrap(iconv_t cd,
-		  char **inbuf, size_t *inbytesleft,
-		  char **outbuf, size_t *outbytesleft)
+                  char **inbuf,
+                  size_t *inbytesleft,
+                  char **outbuf,
+                  size_t *outbytesleft)
 {
 	return iconv(cd, 
-		     inbuf, inbytesleft,
-		     outbuf, outbytesleft);
+		         inbuf,
+                 inbytesleft,
+		         outbuf,
+                 outbytesleft);
 }
 
 #endif /* _BSD_ICONV */

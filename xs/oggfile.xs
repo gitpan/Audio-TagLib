@@ -1,6 +1,6 @@
 #include "oggfile.h"
 
-MODULE = TagLib			PACKAGE = TagLib::Ogg::File
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Ogg::File
 PROTOTYPES: ENABLE
 
 ################################################################

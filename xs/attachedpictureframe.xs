@@ -1,6 +1,6 @@
 #include "attachedpictureframe.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::AttachedPictureFrame
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::AttachedPictureFrame
 PROTOTYPES: ENABLE
 
 ################################################################

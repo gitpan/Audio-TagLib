@@ -4,12 +4,14 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
-our @ISA = qw(Audio::TagLib::ID3v2::Frame);
+use base qw(Audio::TagLib::ID3v2::Frame);
 
+## no critic (ProhibitPackageVars)
+## no critic (ProhibitMixedCaseVars)
 our %_Type = (
     "Other"              => "0x00",
     "FileIcon"           => "0x01",
@@ -34,11 +36,19 @@ our %_Type = (
     "PublisherLogo"      => "0x14",
 );
 
-# Preloaded methods go here.
+sub get_type { return \%_Type; }
 
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -163,8 +173,12 @@ see I<setMimeType()>
 
 =item %_Type
 
+Deprecated. See get_type().
+
+=item get_type()
+
 This describes the function or content of the picture. C<keys
-%Audio::TagLib::ID3v2::AttachedPictureFrame::_Type> lists all available
+%{Audio::TagLib::ID3v2::AttachedPictureFrame::get_type()}> lists all available
 values used in Perl code.
 
 =back
@@ -183,9 +197,15 @@ L<Audio::TagLib|Audio::TagLib> L<Frame|Audio::TagLib::ID3v2::Frame>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

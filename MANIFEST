@@ -1,9 +1,6 @@
-Bugs
+taglib_bugs
 Changes
 INSTALL
-LICENSE
-LICENSE.Artistic
-LICENSE.GPL
 MANIFEST
 META.yml                                 Module meta-data (added by MakeMaker)
 Makefile.PL
@@ -31,6 +28,7 @@ lib/Audio/TagLib/ID3v1/GenreMap.pm
 lib/Audio/TagLib/ID3v1/GenreMap/Iterator.pm
 lib/Audio/TagLib/ID3v1/StringHandler.pm
 lib/Audio/TagLib/ID3v1/Tag.pm
+lib/Audio/TagLib/ID3v2.pm
 lib/Audio/TagLib/ID3v2/AttachedPictureFrame.pm
 lib/Audio/TagLib/ID3v2/CommentsFrame.pm
 lib/Audio/TagLib/ID3v2/ExtendedHeader.pm
@@ -72,19 +70,23 @@ lib/Audio/TagLib/Tag.pm
 lib/Audio/TagLib/Vorbis/File.pm
 lib/Audio/TagLib/Vorbis/Properties.pm
 ppport.h
-sample/Discontent.mp3
-sample/Discontent.ogg
-sample/NOTE
-script/apeitemlistmap.pl
-script/apeitemlistmapiterator.pl
-script/bytevectoriterator.pl
-script/id3v2tagframelist.pl
-script/id3v2tagframelistiterator.pl
-script/id3v2tagframelistmap.pl
-script/id3v2tagframelistmapiterator.pl
-script/oggfieldlistmap.pl
-script/oggfieldlistmapiterator.pl
-script/stringiterator.pl
+sample/guitar.mp3
+sample/guitar-tags.mp3
+sample/guitar.ogg
+sample/guitar.flac
+sample/guitar.wav
+script/fix_dcls.pl
+script/update_template.sh
+script/update_template/apeitemlistmap.pl
+script/update_template/apeitemlistmapiterator.pl
+script/update_template/bytevectoriterator.pl
+script/update_template/id3v2tagframelist.pl
+script/update_template/id3v2tagframelistiterator.pl
+script/update_template/id3v2tagframelistmap.pl
+script/update_template/id3v2tagframelistmapiterator.pl
+script/update_template/oggfieldlistmap.pl
+script/update_template/oggfieldlistmapiterator.pl
+script/update_template/stringiterator.pl
 t/TagLib.t
 t/TagLib_APE_Footer.t
 t/TagLib_APE_Item.t
@@ -146,7 +148,6 @@ t/TagLib_Tag.t
 t/TagLib_Vorbis_File.t
 t/TagLib_Vorbis_Properties.t
 typemap
-update_template.sh
 xs/TITERATOR.xs
 xs/TLIST.xs
 xs/TMAP.xs
@@ -178,6 +179,7 @@ xs/id3v2tagframelist.xs
 xs/id3v2tagframelistiterator.xs
 xs/id3v2tagframelistmap.xs
 xs/id3v2tagframelistmapiterator.xs
+xs/id3v2relativevolumeframe.xs
 xs/mpcfile.xs
 xs/mpcproperties.xs
 xs/mpegfile.xs
@@ -191,7 +193,6 @@ xs/oggpage.xs
 xs/oggpageheader.xs
 xs/oggvorbisfile.xs
 xs/oggvorbisproperties.xs
-xs/relativevolumeframe.xs
 xs/stringiterator.xs
 xs/tag.xs
 xs/tbytevector.xs
@@ -206,3 +207,4 @@ xs/vorbisfile.xs
 xs/vorbisproperties.xs
 xs/xingheader.xs
 xs/xiphcomment.xs
+xs/relativevolumeframe.xs

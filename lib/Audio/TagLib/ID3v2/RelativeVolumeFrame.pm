@@ -4,12 +4,15 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
-our @ISA = qw(Audio::TagLib::ID3v2::Frame);
+use base qw(Audio::TagLib::ID3v2::Frame);
 
+## no critic (ProhibitPackageVars)
+## no critic (ProhibitMixedCaseVars)
+# These values must be coordinated with TagLib::ID3v2::RelativeVolumeFrame Class Reference
 our %_ChannelType = (
     "Other"        => "0x00",
     "MasterVolume" => "0x01",
@@ -22,11 +25,19 @@ our %_ChannelType = (
     "Subwoofer"    => "0x08",
 );
 
-# Preloaded methods go here.
+sub channel_type { return \%_ChannelType; }
 
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -172,9 +183,13 @@ see I<peakVolume()>
 
 =item %_ChannelType
 
+Deprecated. See channel_type.
+
+=item channel_type
+
 This indicates the type of volume adjustment that should be
- applied. C<keys %Audio::TagLib::ID3v2::RelativeVolumeFrame::_ChannelType>
- lists all available values used in Perl code.
+applied. C<keys %{Audio::TagLib::ID3v2::RelativeVolumeFrame::channel_type()}>
+lists all available values used in Perl code.
 
 
 
@@ -194,9 +209,15 @@ L<Audio::TagLib|Audio::TagLib> L<Frame|Audio::TagLib::ID3v2::Frame>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

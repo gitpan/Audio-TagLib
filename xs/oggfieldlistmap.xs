@@ -1,7 +1,7 @@
 #include "xiphcomment.h"
 #include "tmap.h"
 
-MODULE = TagLib		PACKAGE = TagLib::Ogg::FieldListMap
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::Ogg::FieldListMap
 PROTOTYPES: ENABLE
 
 ################################################################

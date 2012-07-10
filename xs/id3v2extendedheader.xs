@@ -1,6 +1,6 @@
 #include "id3v2extendedheader.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::ExtendedHeader
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::ExtendedHeader
 PROTOTYPES: ENABLE
 
 ################################################################

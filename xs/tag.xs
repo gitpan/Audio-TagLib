@@ -1,6 +1,6 @@
 #include "tag.h"
 
-MODULE = TagLib			PACKAGE = TagLib::Tag
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Tag
 PROTOTYPES: ENABLE
 
 ################################################################

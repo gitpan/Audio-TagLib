@@ -1,6 +1,6 @@
 #include "audioproperties.h"
 
-MODULE = TagLib			PACKAGE = TagLib::AudioProperties
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::AudioProperties
 PROTOTYPES: ENABLE
 
 ################################################################

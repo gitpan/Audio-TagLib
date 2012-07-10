@@ -1,6 +1,6 @@
 #include "xiphcomment.h"
 
-MODULE = TagLib			PACKAGE = TagLib::Ogg::XiphComment
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Ogg::XiphComment
 PROTOTYPES: ENABLE
 
 ################################################################

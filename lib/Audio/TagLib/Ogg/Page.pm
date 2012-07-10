@@ -4,10 +4,12 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
+## no critic (ProhibitPackageVars)
+## no critic (ProhibitMixedCaseVars)
 our %_ContainsPacketFlags = (
     "DoesNotContainPacket" => "0x0000",
     "CompletePacket"       => "0x0001",
@@ -20,11 +22,20 @@ our %_PaginationStrategy = (
     "Repaginate"         => 1,
 );
 
-# Preloaded methods go here.
+sub contains_package_flags { return \%_ContainsPacketFlags; }
+
+sub pagination_strategy { return \%_PaginationStrategy; }
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -82,9 +93,13 @@ see I<firstPacketIndex()>
 
 =item %_ContainsPacketFlags
 
+Deprecated. See L<contains_package_flags()|contains_package_flags()>
+
+=item contains_package_flags()
+
 When checking to see if a page contains a given packet this set of
 flags represents the possible values for that packets status in the
-page. 
+page. C<%{Audio::TagLib::Ogg::Page::contains_package_flags()}>
 
 see I<containsPacket()>
 
@@ -117,8 +132,13 @@ Renders the page to binary format.
 
 =item %_PaginationStrategy
 
+Deprecated. See L<pagination_strategy()|pagination_strategy()>
+
+=item pagination_strategy()
+
 Defines a strategy for pagination, or grouping pages into Ogg packets,
-for use with pagination methods.
+for use with pagination methods. Avaliable values are obtained with
+C<%{Audio::TagLib::Ogg::Page::pagination_strategy()}>
 
 B<NOTE>  Yes, I'm aware that this is not a canonical "Strategy
 Pattern", the term was simply convenient.
@@ -159,9 +179,15 @@ L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

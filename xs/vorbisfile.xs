@@ -1,6 +1,6 @@
 #include "vorbisfile.h"
 
-MODULE = TagLib			PACKAGE = TagLib::Vorbis::File
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Vorbis::File
 PROTOTYPES: ENABLE
 
 ################################################################

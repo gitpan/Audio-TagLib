@@ -1,6 +1,6 @@
 #include "mpcproperties.h"
 
-MODULE = TagLib			PACKAGE = TagLib::MPC::Properties
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::MPC::Properties
 PROTOTYPES: ENABLE
 
 ################################################################

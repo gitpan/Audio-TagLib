@@ -1,6 +1,6 @@
 #include "flacproperties.h"
 
-MODULE = TagLib			PACKAGE = TagLib::FLAC::Properties
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::FLAC::Properties
 PROTOTYPES: ENABLE
 
 ################################################################

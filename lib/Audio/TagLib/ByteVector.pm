@@ -4,37 +4,43 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
-# Preloaded methods go here.
-sub _toArray() {
-# This has a shortingcoming
-# index out of bound will not croak
+sub _to_array {
+
+    # This has a shortingcoming
+    # index out of bound will not croak
     my $this   = shift;
-    my $vector = $this->data(); 
-    return [] if $vector eq '';
-    return [ map { substr($vector, $_, 1) } (0 .. length($vector)-1)
-         ];     
+    my $vector = $this->data();
+    return [] if $vector eq q{};
+    return [ map { substr $vector, $_, 1 } ( 0 .. length($vector) - 1 ) ];
 }
 
-use overload 
-  q(@{}) => \&_toArray,
-  q(==)  => \&_equal,
-  q(eq)  => \&_equal,
-  q(!=)  => sub { not shift->_equal(@_);},
-  q(ne)  => \&_notEqual,
-  q(<)   => \&_lessThan,
-  q(lt)  => \&_lessThan,
-  q(>)   => \&_greatThan,
-  q(gt)  => \&_greatThan,
-  q(+)   => \&_add,
-  q("") => sub { shift->_memoAddress(); };
+use overload
+    q(@{}) => \&_to_array,
+    q(==)  => \&_equal,
+    q(eq)  => \&_equal,
+    q(!=)  => sub { not shift->_equal(@_); },
+    q(ne)  => \&_notEqual,
+    q(<)   => \&_lessThan,
+    q(lt)  => \&_lessThan,
+    q(>)   => \&_greatThan,
+    q(gt)  => \&_greatThan,
+    q(+)   => \&_add,
+    q("")  => sub { shift->_memoAddress(); };
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -90,11 +96,17 @@ Destroys this ByteVector instance.
 
 Sets the data for the byte array using the first $length bytes of
 $data. 
+Note: Use without updating size
+should be used with caution since this effects the behavior of other
+methods such as at & clear & resize
 
 =item I<void setData(PV $data)>
 
 Sets the data for the byte array copies $data up to the first null
 byte.  The behavior is undefined if \a data is not null terminated. 
+Note: Use without updating size
+should be used with caution since this effects the behavior of other
+methods such as at & clear & resize
 
 =item I<PV data()>
 
@@ -308,9 +320,16 @@ L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
+
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

@@ -1,6 +1,6 @@
 #include "textidentificationframe.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::TextIdentificationFrame
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::TextIdentificationFrame
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -122,7 +122,7 @@ OUTPUT:
 ################################################################
 ################################################################
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::UserTextIdentificationFrame
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::UserTextIdentificationFrame
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -225,11 +225,15 @@ CODE:
 # 
 ################################################################
 
-#ifdef FIXME
-static void 
+# This function is declared static, by taglib and thus is not accessible
+# INIT/PPCODE appears to be an attempt to get around this restriction
+# Obviously(?)there's not much point in attempting to use it.
+
+TagLib::ID3v2::UserTextIdentificationFrame * 
 TagLib::ID3v2::UserTextIdentificationFrame::find(tag, description)
 	TagLib::ID3v2::Tag * tag
 	TagLib::String * description
+=pod
 INIT:
 	TagLib::ID3v2::UserTextIdentificationFrame * ret = 
 		TagLib::ID3v2::UserTextIdentificationFrame::find(
@@ -244,5 +248,8 @@ PPCODE:
 		XSRETURN(1);
 	} else
 		XSRETURN_UNDEF;
-
-#endif
+=cut
+CODE:
+    RETVAL = TagLib::ID3v2::UserTextIdentificationFrame::find(tag, *description);
+OUTPUT:
+    RETVAL

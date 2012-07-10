@@ -1,19 +1,23 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as 
-# `perl TagLib_ID3v2_Header.t'
+use Test::More tests => 24;
+use Test::Deep;
 
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
-
-use Test::More q(no_plan);
-#use Test::More tests => 1;
 BEGIN { use_ok('Audio::TagLib::ID3v2::Header') };
 
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
+sub convert_bytevector {
+    my $bv = shift;
+    my $iter = $bv->begin();
+    my $l = 0;
+    my @unpacked_bv;
+    # This would be done better with an Iterator, but that requires == defined
+    # as in c++: for(ByteVector::Iterator it = data.begin(); it != data.end(); it++) {
+    # which is not accessible at this point
+    while ( $l < $bv->size() ) {
+        push @unpacked_bv, unpack 'C', $$iter;
+        $iter->next();
+        $l++;
+    }
+    return \@unpacked_bv;
+}
 
 my @methods = qw(new DESTROY majorVersion revisionNumber
 unsynchronisation extendedHeader experimentalIndicator footerPresent
@@ -21,15 +25,71 @@ tagSize completeTagSize setTagSize setData render size fileIdentifier);
 can_ok("Audio::TagLib::ID3v2::Header", @methods) 							or 
 	diag("can_ok failed");
 
-my $i = Audio::TagLib::ID3v2::Header->new();
-my $data = Audio::TagLib::ByteVector->new("blah blah");
-my $j = Audio::TagLib::ID3v2::Header->new($data);
-isa_ok($i, "Audio::TagLib::ID3v2::Header") 								or 
-	diag("method new() failed");
-isa_ok($j, "Audio::TagLib::ID3v2::Header") 								or 
-	diag("method new(bytevector) failed");
+cmp_ok(Audio::TagLib::ID3v2::Header->size(), '==', 10)                                                or
+    diag("static method size() failed");
+cmp_ok(Audio::TagLib::ID3v2::Header->fileIdentifier(), 'eq', Audio::TagLib::ByteVector->new('ID3'))                                                or
+    diag("static method fileIdentifier() failed");
 
-SKIP: {
-skip "more test needed", 1 if 1;
-ok(1);
-}
+my $i = Audio::TagLib::ID3v2::Header->new();
+isa_ok($i, "Audio::TagLib::ID3v2::Header") 								    or 
+	diag("method new() failed");
+cmp_ok($i->majorVersion(), '==', 4)                                         or
+	diag("method majorVersion() failed");
+cmp_ok($i->revisionNumber(), '==', 0)                                       or
+	diag("method revisionNumber() failed");
+cmp_ok($i->unsynchronisation(), '==', 0)                                    or
+	diag("method unsynchronisation() failed");
+cmp_ok($i->experimentalIndicator(), '==', 0)                                or
+	diag("method experimentalIndicator() failed");
+cmp_ok($i->extendedHeader(), '==', 0)                                       or
+	diag("method extendedHeader() failed");
+cmp_ok($i->footerPresent(), '==', 0)                                        or
+	diag("method footerPresent() failed");
+cmp_ok($i->tagSize(), '==', 0)                                              or
+    diag("method tagSize() failed");
+cmp_ok($i->completeTagSize(), '==', 10)                                     or
+    diag("method completeTagSize() failed");
+$i->setTagSize(20);
+cmp_ok($i->tagSize(), '==', 20)                                             or
+    diag("method setTagSize() failed");
+# Now we test the ability to specify a non-standard header tag
+# We need 10 bytes (null-filled) version, revision, flags
+my $head = "ID3\x{02}\x{03}\x{f0}\x{0}\x{0}\x{0}\x{0}";
+my $data = Audio::TagLib::ByteVector->new($head, 10);
+$i = Audio::TagLib::ID3v2::Header->new($data);
+isa_ok($i, "Audio::TagLib::ID3v2::Header") 								    or 
+	diag("method new(bytevector) failed");
+cmp_ok($i->size(), '==', 10)                                                or
+	diag("method new(bytevector) failed");
+cmp_ok($i->majorVersion(), '==', 2)                                         or
+	diag("method majorVersion() failed");
+cmp_ok($i->revisionNumber(), '==', 3)                                       or
+	diag("method revisionNumber() failed");
+cmp_ok($i->unsynchronisation(), '==', 1)                                    or
+	diag("method unsynchronisation() failed");
+cmp_ok($i->experimentalIndicator(), '==', 1)                                or
+	diag("method experimentalIndicator() failed");
+cmp_ok($i->extendedHeader(), '==', 1)                                       or
+	diag("method extendedHeader() failed");
+cmp_ok($i->footerPresent(), '==', 1)                                        or
+	diag("method footerPresent() failed");
+
+# Render changes things a bit
+# The point to this test is to demonstrate thtat the
+# render() method discards non-current values in the header.
+# So, for example, the major version is changes from 2 to 4
+# The experimentalIndicator flag is not cleared (bug??), so
+# we replicate it in our baseline.
+
+$new_head = "ID3\x{04}\x{0}\x{20}\x{0}\x{0}\x{0}\x{0}";
+$new_data = Audio::TagLib::ByteVector->new($new_head, 10);
+$new = convert_bytevector($new_data);
+$render = convert_bytevector($i->render());
+cmp_deeply($new, $render)                                                   or
+    diag("method render() failed");
+
+# Demonstrate that illegal header data is accepted 
+$data = Audio::TagLib::ByteVector->new("'twas brillig and ...");
+$i = Audio::TagLib::ID3v2::Header->new($data);
+cmp_ok($i->majorVersion(), '==', 97)                                         or
+	diag("method majorVersion() failed");

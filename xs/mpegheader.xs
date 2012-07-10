@@ -1,6 +1,6 @@
 #include "mpegheader.h"
 
-MODULE = TagLib 		PACKAGE = TagLib::MPEG::Header
+MODULE = Audio::TagLib 		PACKAGE = Audio::TagLib::MPEG::Header
 PROTOTYPES: ENABLE
 
 ################################################################

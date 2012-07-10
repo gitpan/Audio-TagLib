@@ -1,19 +1,6 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as 
-# `perl TagLib_ID3v2_UniqueFileIdentifierFrame.t'
-
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
-
-#use Test::More q(no_plan);
 use Test::More tests => 8;
+
 BEGIN { use_ok('Audio::TagLib::ID3v2::UniqueFileIdentifierFrame') };
-
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
 
 my @methods = qw(new DESTROY owner identifier setOwner setIdentifier
 toString frameID size setData setText render headerSize textDelimiter);

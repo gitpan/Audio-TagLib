@@ -1,6 +1,6 @@
 #include "flacfile.h"
 
-MODULE = TagLib			PACKAGE = TagLib::FLAC::File
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::FLAC::File
 PROTOTYPES: ENABLE
 
 ################################################################

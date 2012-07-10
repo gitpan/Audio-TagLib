@@ -4,17 +4,23 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
-our @ISA = qw(Audio::TagLib::File);
-
-# Preloaded methods go here.
+use base qw(Audio::TagLib::File);
 
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -162,8 +168,6 @@ This method will not be public in a future release.
 
 None by default.
 
-
-
 =head1 SEE ALSO
 
 L<Audio::TagLib|Audio::TagLib> L<File|Audio::TagLib::File>
@@ -172,9 +176,15 @@ L<Audio::TagLib|Audio::TagLib> L<File|Audio::TagLib::File>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

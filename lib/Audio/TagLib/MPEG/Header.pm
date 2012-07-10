@@ -4,14 +4,16 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
+## no critic (ProhibitPackageVars)
+## no critic (ProhibitMixedCaseVars)
 our %_Version = (
-    "Version1"      => 0,
-    "Version2"      => 1,
-    "Version2_5"    => 2,
+    "Version1"   => 0,
+    "Version2"   => 1,
+    "Version2_5" => 2,
 );
 
 our %_ChannelMode = (
@@ -21,11 +23,18 @@ our %_ChannelMode = (
     "SingleChannel" => 3,
 );
 
-# Preloaded methods go here.
+sub get_version { return \%_Version; }
+
+sub channel_mode { return \%_ChannelMode; }
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -65,7 +74,21 @@ Returns true if the frame is at least an appropriate size and has
 
 =item %_Version
 
-The MPEG Version. C<keys %Audio::TagLib::MPEG::Header::_Version> lists all
+=over 4
+
+C< our %_Version = (
+    "Version1"   => 0,
+    "Version2"   => 1,
+    "Version2_5" => 2,
+);>
+
+=back
+
+Deprecated. See L<get_version()|get_version()>
+
+=item get_version()
+
+The MPEG Version. C<keys %{Audio::TagLib::MPEG::Header:get_version()}> lists all
 available values used in Perl code.
 
 =item I<PV version()>
@@ -94,8 +117,20 @@ Returns true if the frame is padded.
 
 =item %_ChannelMode
 
+=over 4
+
+C<our %_Version = (
+    "Version1"   => 0,
+    "Version2"   => 1,
+    "Version2_5" => 2,
+);>
+
+=back
+
+Deprecated. See L<channel_mode()|channel_mode()>
+
 There are a few combinations or one or two channel audio that are
- possible. C<keys %Audio::TagLib::MPEG::Header::_ChannelMode> lists all
+ possible. C<keys %{Audio::TagLib::MPEG::Header::channel_mode()}> lists all
  available values used in Perl code.
 
 =item I<PV channelMode()>
@@ -134,9 +169,15 @@ L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

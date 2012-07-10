@@ -1,6 +1,6 @@
 #include "id3v1genres.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v1
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v1
 PROTOTYPES: ENABLE
 
 ################################################################

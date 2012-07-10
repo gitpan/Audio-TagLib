@@ -1,6 +1,6 @@
 #include "tlist.h"
 
-MODULE = TagLib			PACKAGE = _NAMESPACE_
+MODULE = Audio::TagLib			PACKAGE = Audio::_NAMESPACE_
 PROTOTYPES: ENABLE
 
 ################################################################

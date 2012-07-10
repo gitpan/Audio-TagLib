@@ -1,6 +1,6 @@
 #include "tfile.h"
 
-MODULE = TagLib			PACKAGE = TagLib::File
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::File
 PROTOTYPES: ENABLE
 
 ################################################################

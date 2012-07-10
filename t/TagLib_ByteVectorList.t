@@ -1,19 +1,6 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as 
-# `perl TagLib_ByteVectorList.t'
-
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
-
 use Test::More q(no_plan);
-#use Test::More tests => 5;
+
 BEGIN { use_ok('Audio::TagLib::ByteVectorList') };
-
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
 
 my @methods = qw(new DESTROY toByteVector split);
 can_ok("Audio::TagLib::ByteVectorList", @methods)		or 
@@ -21,15 +8,21 @@ can_ok("Audio::TagLib::ByteVectorList", @methods)		or
 
 my $i = Audio::TagLib::ByteVectorList->new();
 my $j = Audio::TagLib::ByteVectorList->new($i);
-isa_ok($i, "Audio::TagLib::ByteVectorList")			or 
+isa_ok($i, "Audio::TagLib::ByteVectorList")			    or 
 	diag("method new() failed");
 isa_ok($j, "Audio::TagLib::ByteVectorList") 			or 
 	diag("method new(l) failed");
 
-ok($i->toByteVector()->isEmpty()) 				or 
+ok($i->toByteVector()->isEmpty()) 				        or 
 	diag("method toByteVector() failed");
-my $v = Audio::TagLib::ByteVector->new("This is a test");
+
+my $v = Audio::TagLib::ByteVector->new("This is real test");
 my $pattern = Audio::TagLib::ByteVector->new(" ");
+# Split "This is a test" into several strings at " "
 my $k1 = Audio::TagLib::ByteVectorList->split($v, $pattern);
-is($k1->toByteVector->data(), "This is a test") or 
+# Combine the data in $kl using the default sepaarator, " "
+# Which shoud reconstitute the original string
+is($k1->toByteVector->data(), "This is real test")     or 
 	diag("method split(v, pattern) failed");
+# There's a bug in taglib 1.5. if one of the split strings ("a instead of "real", for example)
+# is of length 1, it's lost

@@ -1,6 +1,6 @@
 #include "apetag.h"
 
-MODULE = TagLib			PACKAGE = TagLib::APE::Tag
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::APE::Tag
 PROTOTYPES: ENABLE
 
 ################################################################

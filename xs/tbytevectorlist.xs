@@ -1,6 +1,6 @@
 #include "tbytevectorlist.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ByteVectorList
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ByteVectorList
 PROTOTYPES: ENABLE
 
 

@@ -1,6 +1,6 @@
 #include "id3v2footer.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::Footer
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::Footer
 PROTOTYPES: ENABLE
 
 ################################################################

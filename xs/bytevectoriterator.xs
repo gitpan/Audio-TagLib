@@ -1,9 +1,8 @@
-#define LONGMOVEMENT 1
 #include "tbytevector.h"
 #include "tmap.h"
 #include "tlist.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ByteVector::Iterator
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ByteVector::Iterator
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -71,8 +70,6 @@ PPCODE:
 	SvREADONLY_on(SvRV(ST(0)));
 	XSRETURN(1);
 
-#ifdef LONGMOVEMENT
-
 void 
 TagLib::ByteVector::Iterator::forward(n)
 	int n
@@ -95,15 +92,22 @@ PPCODE:
 	//SvREADONLY_on(SvRV(ST(0)));
 	XSRETURN(1);
 
-#endif
 
-#ifdef MOREMETHODS
-
+#if 0 // NOTIMPLEMENTED
 bool 
 TagLib::ByteVector::Iterator::equal(i)
 	TagLib::ByteVector::Iterator * i
 CODE:
-	RETVAL = THIS->operator==(*i);
+	RETVAL = std::vector<char>::iterator::operator==(*i);
+OUTPUT:
+	RETVAL
+
+
+bool 
+TagLib::ByteVector::Iterator::notEqual(i)
+	TagLib::ByteVector::Iterator * i
+CODE:
+	RETVAL = THIS->operator!=(*i);
 OUTPUT:
 	RETVAL
 
@@ -123,6 +127,7 @@ CODE:
 OUTPUT:
 	RETVAL
 
+
 bool 
 TagLib::ByteVector::Iterator::lessEqual(i)
 	TagLib::ByteVector::Iterator * i
@@ -139,6 +144,8 @@ CODE:
 OUTPUT:
 	RETVAL
 
+#endif
+
 void 
 TagLib::ByteVector::Iterator::copy(i)
 	TagLib::ByteVector::Iterator * i
@@ -146,6 +153,3 @@ PPCODE:
 	(void)THIS->operator=(*i);
 	XSRETURN(1);
 
-#endif /* MOREMETHODS */
-
-#undef LONGMOVEMENT

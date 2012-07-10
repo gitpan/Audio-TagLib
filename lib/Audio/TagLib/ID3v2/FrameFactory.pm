@@ -4,15 +4,21 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
-# Preloaded methods go here.
-
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -49,17 +55,19 @@ textbooks (Notably I<Design Patterns>).
 =item I<FrameFactory instance()> [static]
 
 Returns an instance of FrameFactory.
+As the constructor for FrameFactory is protected, this is the only method that
+provides a FrameFactory for use in accessing other FrameFactory methods.
 
 =item I<L<Frame|Audio::TagLib::ID3v2::Frame>
 createFrame(L<Bytevector|Audio::TagLib::ByteVector> $data, BOOL
 $synchSafeInts)> 
 
 Create a frame based on $data. $synchSafeInts should only be set false
-  if we are parsing an old tag (v2.3 or older) that does not support
-  synchsafe ints.
+if we are parsing an old tag (v2.3 or older) that does not support
+synchsafe ints.
 
-Please use the method below that accepts an ID3 version number in new
-  code. 
+Deprecated. Please use the method below that accepts an ID3v2::Header
+
 
 =item I<L<Frame|Audio::TagLib::ID3v2::Frame>
 createFrame(L<ByteVector|Audio::TagLib::ByteVector> $data, UV $version = 4)> 
@@ -67,6 +75,14 @@ createFrame(L<ByteVector|Audio::TagLib::ByteVector> $data, UV $version = 4)>
 Create a frame based on $data. $version should indicate the ID3v2
 version of the tag. As ID3v2.4 is the most current version of the
 standard 4 is the default.
+
+Deprecated. Please use the method below that accepts an ID3v2::Header
+
+=item I<L<Frame|Audio::TagLib::ID3v2::Frame>
+createFrame(L<ByteVector|Audio::TagLib::ByteVector> $data, L<Headerr|Audio::TagLib::ID3v2::Header>
+$tagHeader)>
+
+Create a frame based on $data.  $tagHeader should be a valid ID3v2::Header instance.
 
 =item I<PV defaultTextEncoding()>
 
@@ -82,8 +98,8 @@ see I<setDefaultTextEncoding()>
 =item I<void setDefaultTextEncoding(PV $encoding)>
 
 Set the default text encoding for all text frames that are created to
- $encoding. If no value is set the frames with either default to the
- encoding type that was parsed and new frames default to Latin1.
+$encoding. If no value is set the frames with either default to the
+encoding type that was parsed and new frames default to Latin1.
 
 =back
 
@@ -101,9 +117,15 @@ L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

@@ -1,6 +1,6 @@
 #include "tmap.h"
 
-MODULE = TagLib		PACKAGE = TagLib::APE::ItemListMap
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::APE::ItemListMap
 PROTOTYPES: ENABLE
 
 ################################################################

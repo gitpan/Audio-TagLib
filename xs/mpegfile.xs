@@ -1,6 +1,6 @@
 #include "mpegfile.h"
 
-MODULE = TagLib			PACKAGE = TagLib::MPEG::File
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::MPEG::File
 PROTOTYPES: ENABLE
 
 ################################################################

@@ -1,7 +1,7 @@
 #include "id3v2tag.h"
 #include "tmap.h"
 
-MODULE = TagLib		PACKAGE = TagLib::ID3v2::FrameListMap
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::ID3v2::FrameListMap
 PROTOTYPES: ENABLE
 
 ################################################################

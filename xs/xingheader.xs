@@ -1,6 +1,6 @@
 #include "xingheader.h"
 
-MODULE = TagLib			PACKAGE = TagLib::MPEG::XingHeader
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::MPEG::XingHeader
 PROTOTYPES: ENABLE
 
 ################################################################

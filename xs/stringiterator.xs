@@ -3,7 +3,7 @@
 #include "tmap.h"
 #include "tlist.h"
 
-MODULE = TagLib			PACKAGE = TagLib::String::Iterator
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::String::Iterator
 PROTOTYPES: ENABLE
 
 ################################################################

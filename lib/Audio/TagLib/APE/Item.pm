@@ -4,20 +4,30 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
+## no critic (ProhibitPackageVars)
+## no critic (ProhibitMixedCaseVars)
 our %_ItemTypes = (
     "Text"    => 0,
     "Binary"  => 1,
     "Locator" => 2,
 );
 
-# Preloaded methods go here.
+sub item_types { return \%_ItemTypes; }
+
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -58,7 +68,9 @@ Constructs an item with $key and $values.
 
 Construct an item as a copy of $item.
 
-=item I<DESTROY()>
+=item I<DESTROY()>## no critic (ProhibitPackageVars)
+## no critic (ProhibitMixedCaseVars)
+
 
 Destroys the item.
 
@@ -107,13 +119,13 @@ Set the item to read-only.
 
 Sets the type of the item to $type.
 
-see I<%_ItemTypes>
+see I<item_types>
 
 =item I<PV type()>
 
 Returns the type of the item.
 
-see I<%_ItemTypes>
+see I<item_types>
 
 =item I<BOOL isEmpty()>
 
@@ -121,8 +133,12 @@ Returns if the item has any real content.
 
 =item %_ItemTypes
 
-C<keys %Audio::TagLib::APE::Item::_ItemTypes> lists all available itemtypes
-used in Perl. 
+Deprecated. See I<item_types>
+
+=item item_types
+
+Returns a reference to  %_ItemTypes, which  lists all available itemtypes.
+C<keys $%Audio::TagLib::APE::Item::item_types()> lists all available itemtypes.
 
 see I<L<setType>>
 

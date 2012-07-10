@@ -1,6 +1,6 @@
 #include "fileref.h"
 
-MODULE = TagLib			PACKAGE = TagLib::FileRef
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::FileRef
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -221,7 +221,7 @@ OUTPUT:
 ################################################################
 ################################################################
 
-MODULE = TagLib			PACKAGE = TagLib::FileRef::FileTypeResolver
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::FileRef::FileTypeResolver
 PROTOTYPES: ENABLE
 
 ################################################################

@@ -1,5 +1,24 @@
 Revision history for Perl extension TagLib.
 
+1.50 Tue Jul 10 08:26:45 PDT 2012
+    - Final
+
+1.50.0 Sat Jan 22 15:41:45 PST 2011
+    - Based on taglib v 1.5. As of this writing, taglib is at v1.6.3,
+       consequently it's unlikely that this will be of much use to anyone.
+       It's being released as a checkpoint on the way to supporting that release.
+       Only fatal bugs will be addressed on this thread.
+    - While all of the tests pass, it's not guaranteed that all of the
+      TagLib functionality has been tested. YMMV!
+    - Add Audio:: to MODULE and DISTRIBUTION statements in xs/*
+        used script fix_dcls.pl
+    - Updated ppport.h
+    - Cleaned auto-inserted comments from t/*
+    - Fixed coding errors in t/*
+    - Swapped in guitar.* in sample/; adds .wav and .flac
+        Produced from guitar.wav using Audacity. Where guitar.wav came 
+        from is anybody's guess
+
 1.50_01 10.07.2009
     - patch from CHOCOLATE _at_ cpan dot org (#36560)
     - patch from Spr _at_ cpan dot org (#24410)
@@ -17,5 +36,4 @@ Revision history for Perl extension TagLib.
     - bug fix (stack manipulation bug and Makefile.PL)
 
 1.4   Mon Aug 15 18:47:30 2005
-	- original version; created by h2xs 1.23 with options
-		-A -n TagLib
+	- original version; created by h2xs 1.23 with options -A -n TagLib

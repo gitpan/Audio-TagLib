@@ -19,6 +19,7 @@ TagLib::ID3v1::StringHandler * 							TL_OBJECT
 TagLib::ID3v2::ExtendedHeader * 						TL_OBJECT
 TagLib::ID3v2::Footer * 								TL_OBJECT
 TagLib::ID3v2::Header * 								TL_OBJECT
+TagLib::ID3v2::RelativeVolumeFrame * 					TL_OBJECT
 TagLib::ID3v2::RelativeVolumeFrame::PeakVolume * 		TL_OBJECT
 TagLib::ID3v2::Frame * 									TL_OBJECT
 TagLib::ID3v2::FrameFactory * 							TL_OBJECT
@@ -40,7 +41,6 @@ TagLib::Ogg::FieldListMap * 							TL_OBJECT
 TagLib::Ogg::FieldListMap::Iterator * 					TL_OBJECT
 TagLib::ID3v2::AttachedPictureFrame * 					TL_OBJECT
 TagLib::ID3v2::CommentsFrame * 							TL_OBJECT
-TagLib::ID3v2::RelativeVolumeFrame * 					TL_OBJECT
 TagLib::ID3v2::TextIdentificationFrame * 				TL_OBJECT
 TagLib::ID3v2::UserTextIdentificationFrame * 			TL_OBJECT
 TagLib::ID3v2::UniqueFileIdentifierFrame * 				TL_OBJECT

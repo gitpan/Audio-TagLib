@@ -1,6 +1,6 @@
 #include "apefooter.h"
 
-MODULE = TagLib		PACKAGE = TagLib::APE::Footer
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::APE::Footer
 
 PROTOTYPES: 	ENABLE
 

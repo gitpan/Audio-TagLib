@@ -1,6 +1,6 @@
 #include "commentsframe.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::CommentsFrame
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::CommentsFrame
 PROTOTYPES: ENABLE
 
 ################################################################

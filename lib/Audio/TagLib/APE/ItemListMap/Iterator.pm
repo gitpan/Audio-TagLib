@@ -4,24 +4,30 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
 use overload
-  q(${}) => sub { my $data = shift->data(); \$data;},
-  q(=)   => sub { __PACKAGE__->new($_[0]); },
-  q(++)  => sub { shift->next();},
-  q(--)  => sub { shift->last();};
+    q(${}) => sub { my $data = shift->data(); \$data; },
+    q(=)   => sub { __PACKAGE__->new( $_[0] ); },
+    q(++)  => sub { shift->next(); },
+    q(--)  => sub { shift->last(); };
 
 #  q(+=)  => sub { shift->forward($_[0]);},
 #  q(-=)  => sub { shift->backward($_[0]);};
 
-# Preloaded methods go here.
-
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -82,7 +88,7 @@ overloaded by operator q(++)
 
 Moves to last item.
 
-overloaded by operator q(--)
+Overloaded by operator q(--)
 
 =item I<void copy(L<Iterator|Audio::TagLib::APE::ItemListMap::Iterator> $it)>
 
@@ -110,9 +116,16 @@ L<ItemListMap|Audio::TagLib::APE::ItemListMap> L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
+
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

@@ -1,6 +1,6 @@
 #include "mpegproperties.h"
 
-MODULE = TagLib			PACKAGE = TagLib::MPEG::Properties
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::MPEG::Properties
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -66,16 +66,12 @@ CODE:
 OUTPUT:
 	RETVAL
 
-#ifdef FIXME
-
 bool 
 TagLib::MPEG::Properties::protectionEnabled()
 CODE:
 	RETVAL = THIS->protectionEnabled();
 OUTPUT:
 	RETVAL
-
-#endif
 
 TagLib::MPEG::Header::ChannelMode 
 TagLib::MPEG::Properties::channelMode()

@@ -1,6 +1,6 @@
 #include "mpcfile.h"
 
-MODULE = TagLib			PACKAGE = TagLib::MPC::File
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::MPC::File
 PROTOTYPES: ENABLE
 
 ################################################################

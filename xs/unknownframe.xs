@@ -1,6 +1,6 @@
 #include "unknownframe.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::UnknownFrame
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::UnknownFrame
 PROTOTYPES: ENABLE
 
 ################################################################

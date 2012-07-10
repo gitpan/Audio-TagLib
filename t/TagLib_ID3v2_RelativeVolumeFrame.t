@@ -1,51 +1,41 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as 
-# `perl TagLib_ID3v2_RelativeVolumeFrame.t'
-
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
-
-#use Test::More q(no_plan);
 use Test::More tests => 7;
+
 BEGIN { use_ok('Audio::TagLib::ID3v2::RelativeVolumeFrame') };
 
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
-
 my @methods = qw(new DESTROY toString channels channelType
-setChannelType volumeAdjustmentIndex setVolumeAdjustmentIndex
-volumeAdjustment setVolumeAdjustment peakVolume setPeakVolume 
-frameID size setData setText render headerSize textDelimiter);
+                 setChannelType volumeAdjustmentIndex setVolumeAdjustmentIndex
+                 volumeAdjustment setVolumeAdjustment peakVolume setPeakVolume);
 can_ok("Audio::TagLib::ID3v2::RelativeVolumeFrame", @methods) 				or 
 	diag("can_ok failed");
-TODO: {
-local $TODO = "Audio::TagLib::ID3v2::RelativeVolumeFrame() not implemented";
-#isa_ok(Audio::TagLib::ID3v2::RelativeVolumeFrame->new(), 
-#	"Audio::TagLib::ID3v2::RelativeVolumeFrame") 							or 
-#	diag("method new() failed");
-}
+
+isa_ok(Audio::TagLib::ID3v2::RelativeVolumeFrame->new(), 
+	"Audio::TagLib::ID3v2::RelativeVolumeFrame") 							or 
+	diag("method new() failed");
 my $i = Audio::TagLib::ID3v2::RelativeVolumeFrame->new(
-	Audio::TagLib::ByteVector->new());
-isa_ok($i, "Audio::TagLib::ID3v2::RelativeVolumeFrame") 					or 
+	Audio::TagLib::ByteVector->new("XXXX\0\0\0\0\0\0", 10))                 or
 	diag("method new(data) failed");
-#$i->setChannelType("BackCentre");
-is($i->channelType(), "MasterVolume") 								or 
+# This is deprecated. Call has no effect
+$i->setChannelType("BackCentre");
+# This proves that setChannelType() is deprecated. type is hard-coded
+is($i->channelType(), "MasterVolume") 								        or 
 	diag("method setChannelType(t) and channelType() failed");
 $i->setVolumeAdjustmentIndex(20, "MasterVolume");
-cmp_ok($i->volumeAdjustmentIndex(), "==", 20) 						or 
+cmp_ok($i->volumeAdjustmentIndex("MasterVolume"), "==", 20) 		        or 
 	diag("method setVolumeAdjustmentIndex(index) and".
-		" volumeAdjustmentIndex() failed");
-$i->setVolumeAdjustment(20.20);
-cmp_ok($i->volumeAdjustment(), "==", 0) 							or 
+		" volumeAdjustmentIndex(MasterVolume) failed");
+# Set float 20.20 that's a float, not a comma
+$i->setVolumeAdjustment(20.20, "MasterVolume");
+cmp_ok($i->volumeAdjustment("MasterVolume"), "==", 20.19921875) 			or 
 	diag("method setVolumeAdjustment(adj) and".
-		" valumeAdjustment() failed");
+		" valumeAdjustment(MasterVolume) failed");
 my $peak = Audio::TagLib::ID3v2::RelativeVolumeFrame::PeakVolume->new();
-#$peak->setBitsRepresentingPeak(20);
-#$peak->setPeakVolume(Audio::TagLib::ByteVector->new("blah blah"));
-$i->setPeakVolume($peak);
-isa_ok($i->peakVolume(), 
+# So, 20 bits represent Peak. This is a local function that sets a PeakVolume structure menber 
+$peak->setBitsRepresentingPeak(20);
+# setPeakVolume() sets the PeakVolume structure to this ByteVector, which is a series
+# of 20 bits (see above) that represents the PeakVolume. What we have here is obviously
+# just an arbitrary piece of data
+$peak->setPeakVolume(Audio::TagLib::ByteVector->new("blah blah"));
+$i->setPeakVolume($peak, "MasterVolume");
+isa_ok($i->peakVolume("MasterVolume"), 
 	"Audio::TagLib::ID3v2::RelativeVolumeFrame::PeakVolume") 				or 
 	diag("method setPeakVolume(peak) and peakVolume() failed");

@@ -2,7 +2,7 @@
 #include "tmap.h"
 #include "tlist.h"
 
-MODULE = TagLib			PACKAGE = TagLib::APE::ItemListMap::Iterator
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::APE::ItemListMap::Iterator
 PROTOTYPES: ENABLE
 
 ################################################################

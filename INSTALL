@@ -1,6 +1,6 @@
 1) manual install
 
-while untared:
+Download from CPAN and untar
 
 perl MakeFile.PL
 make
@@ -10,21 +10,23 @@ make install [as root if to install for all users]
 2) install via CPAN
 
 perl -MCPAN -e shell
-<cpan>install TagLib
+<cpan>install Audio::TagLib
 
 --------------------------------------------------
 
-More to say about Build
+The test report shows this
 
-Due to some bugs(Refer to Bugs for detail) of the 
-original release of TagLib version 1.4, some methods 
-are not exported by default. 
-You can check out the latest cvs build and re-install 
-if possible. Then insert '-DFIXME' into the value of 
-DEFINE in MakeFile.PL to enable the masked methods.
+Test Summary Report
+-------------------
+t/TagLib_Ogg_Vorbis_File.t                     (Wstat: 65280 Tests: 3 Failed: 0)
+Non-zero exit status: 255
+t/TagLib_Ogg_Vorbis_Properties.t               (Wstat: 65280 Tests: 3 Failed: 0)
+Non-zero exit status: 255
+t/TagLib_Vorbis_File.t                         (Wstat: 65280 Tests: 3 Failed: 0)
+Non-zero exit status: 255
+t/TagLib_Vorbis_Properties.t                   (Wstat: 65280 Tests: 3 Failed: 0)
+Non-zero exit status: 255
+Result: FAIL
+Failed 4/60 test programs. 0/663 subtests failed.
 
-The namespace TagLib::Ogg::Vorbis is only defined by 
-'DOXYGEN'. In case your libtag.so has symbols under 
-that namespace, change '-DNO_DOXYGEN' to '-DDOXYGEN' 
-in MakeFile.PL
-
+The listed tests have TODO blocks. the failures are expected.

@@ -1,6 +1,6 @@
 #include "tstring.h"
 
-MODULE = TagLib		PACKAGE = TagLib::String
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::String
 PROTOTYPES: ENABLE
 
 

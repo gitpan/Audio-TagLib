@@ -4,10 +4,12 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
+## no critic (ProhibitPackageVars)
+## no critic (ProhibitMixedCaseVars)
 our %_TagTypes = (
     "NoTags"  => "0x0000",
     "ID3v1"   => "0x0001",
@@ -16,13 +18,21 @@ our %_TagTypes = (
     "AllTags" => "0xffff",
 );
 
-our @ISA = qw(Audio::TagLib::File);
+sub tag_types { return \%_TagTypes; }
 
-# Preloaded methods go here.
+use base qw(Audio::TagLib::File);
 
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -113,8 +123,12 @@ be called.
 
 =item %_TagTypes
 
+Deprecated. See L<tag_types()|tag_tyes()>
+
+=item = tag_types()
+
 This set of flags is used for various operations. C<keys
-%Audio::TagLib::MPC::File::_TagTypes> lists all available values used in Perl
+%{Audio::TagLib::MPC::File::tag_types()}> lists all available values used in Perl
 code. 
 
 B<WARNING> The values are not allowed to be OR-ed together in Perl.
@@ -135,9 +149,15 @@ L<Audio::TagLib|Audio::TagLib> L<File|Audio::TagLib::File>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

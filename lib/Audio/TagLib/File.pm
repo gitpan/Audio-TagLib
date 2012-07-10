@@ -4,21 +4,31 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
+## no critic (ProhibitMixedCaseVars)
+## no critic (ProhibitPackageVars)
 our %_Position = (
     "Beginning" => 0,
     "Current"   => 1,
     "End"       => 2,
 );
 
-# Preloaded methods go here.
+sub position { return \%_Position; }
 
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -161,8 +171,13 @@ Returns true if $file can be opened for writing.
 
 =item %_Position
 
+Depreciated. See position()
+
+=item position
+
   Position in the file used for seeking. C<keys
-  %Audio::TagLib::File::_Position> lists all available values used in Perl code.
+  %Audio::TagLib::File::position()> returns a reference to an hash 
+  that lists all positioning codes.
 
 =back
 
@@ -180,9 +195,16 @@ L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
+
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

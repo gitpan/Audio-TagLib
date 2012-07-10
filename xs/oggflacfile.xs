@@ -1,6 +1,6 @@
 #include "oggflacfile.h"
 
-MODULE = TagLib			PACKAGE = TagLib::Ogg::FLAC::File
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Ogg::FLAC::File
 PROTOTYPES: ENABLE
 
 ################################################################

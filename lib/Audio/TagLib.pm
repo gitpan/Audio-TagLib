@@ -4,10 +4,10 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.50_01';
+our $VERSION = '1.50';
 
-require XSLoader;
-XSLoader::load('Audio::TagLib', $VERSION);
+use XSLoader;
+XSLoader::load( 'Audio::TagLib', $VERSION );
 
 # fill overload stash in each sub-package
 use Audio::TagLib::APE::Footer;
@@ -70,11 +70,31 @@ use Audio::TagLib::ID3v1::GenreMap;
 use Audio::TagLib::ID3v1::GenreMap::Iterator;
 use Audio::TagLib::ID3v2::SynchData;
 
-# Preloaded methods go here.
-
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+Ogg
+FLAC
+MPC
+API
+TagLib
+Vorbis
+STL
+KDE
+ENUM
+enum
+UTF
+NAMESPACE
+namespace
+DOXYGEN
+param
+AudioProperties
+READONLY
+Dongxu
+=end stopwords
 
 =head1 NAME
 
@@ -84,8 +104,6 @@ known as I<tags>.
 =head1 SYNOPSIS
 
   use Audio::TagLib;
-  use warnings;
-  use strict;
 
   my $f      = Audio::TagLib::FileRef->new("Latex Solar Beef.mp3");
   my $artist = $f->tag()->artist();
@@ -106,6 +124,10 @@ MP3 (or any other formats supported in the future).  For this high
 level API, which is suitable for most applications, the differences
 between tag and file formats can all be ignored.
 
+=head1 VERSION
+
+1.50
+
 =head1 DESCRIPTION
 
 Some goals of TagLib:
@@ -115,14 +137,14 @@ Some goals of TagLib:
  - Binary compatibility between minor releases using the standard
 KDE/Qt techniques for C++ binary compatibility.
  - Make the tagging framework extensible by library users; i.e. it
-will be possible for libarary users to implement  additional ID3v2
+will be possible for library users to implement  additional ID3v2
 frames, without modifying the TagLib source (through the use of
 I<Abstract Factories> and such.
 
 Because TagLib desires to be toolkit agnostic, in hope of being widely
 adopted and the most flexible in licensing
 TagLib provides many of its own toolkit classes; in fact the only
-external dependancy that TagLib has, it a semi-sane STL implementation.
+external dependency that TagLib has, it a semi-sane STL implementation.
 
 =over
 
@@ -141,8 +163,7 @@ C/C++ API and uses a dubious object model.
 Scott gets asked rather frequently why he is replacing I<id3lib>
 (mostly by people that have never worked with I<id3lib>), if you are
 concerned about this please email him; He can provide his lengthy
-standard rant. You can also email me if you like. I will talk to him
-:-)
+standard rant. 
 
 =back
 
@@ -153,7 +174,7 @@ None by default.
 =head1 ENUM TYPE MAPPING
 
 All over TagLib in Perl, ALL the enum value is mapped to a specific 
-string. For instace, Audio::TagLib::String::UTF8 => "UTF8". Usually there
+string. For instance, Audio::TagLib::String::UTF8 => "UTF8". Usually there
 will be a hash you can query all the available values.
 
 =head1 NAMESPACE ISSUE
@@ -161,7 +182,7 @@ will be a hash you can query all the available values.
 Audio::TagLib::Ogg::Vorbis and Audio::TagLib::Vorbis are normally the same.
 
 In C/C++, namespace Ogg is controlled by the macro DOXYGEN. When
-defined, there will be Audio::TagLib::Ogg::Vorbis existing. Otherwize, they
+defined, there will be Audio::TagLib::Ogg::Vorbis existing. Otherwise, they
 just import all the symbols from Audio::TagLib::Vorbis to
 Audio::TagLib::Ogg::Vorbis.
 
@@ -170,7 +191,7 @@ another. Refer to Audio::TagLib::Ogg::Vorbis::File.pm, for instance.
 
 =head1 FUNCTION PROTOTYPE
 
-currently all XS stubs will be imported into Perl namespace with
+Currently all XS stubs will be imported into Perl namespace with
 specific prototype, just the same as internal functions.
 Prototype triggers a type map sometimes silently since it introduces
 context to each param.
@@ -189,7 +210,7 @@ Currently NOT implemented.
 
 =head1 OTHER STUFF YOU SHOULD KNOW
 
-some methods will often return certain internal structure of an
+Some methods will often return certain internal structure of an
 instance, for example, I<tag()> & I<audioProperties()> in all
 subclasses of L<AudioProperties|Audio::TagLib::AudioProperties>. In such
 case, a READONLY flag is set on for the returned structure to bypass
@@ -197,7 +218,8 @@ I<DESTROY()>.
 
 =head1 SEE ALSO
 
-F<http://developer.kde.org/~wheeler/taglib.html>
+The TagLib documentation page.
+http://developer.kde.org/~wheeler/taglib.html
 
 =head1 KNOWN BUGS
 
@@ -205,15 +227,21 @@ Refer to I<Bugs> in the top level of the package
 
 =head1 CREDITS
 
-Scott Wheeler E<lt>wheeler@kde.orgE<gt>
+Scott Wheeler wheeler@kde.org
 
 =head1 AUTHOR
 
-Dongxu Ma E<lt>dongxu@cpan.orgE<gt>
+Dongxu Ma dongxu@cpan.org
+
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 - 2006 by Dongxu Ma
+Copyright (C) 2005 - 2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

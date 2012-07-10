@@ -1,7 +1,7 @@
 #include "id3v2tag.h"
 #include "tlist.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::FrameList
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::FrameList
 PROTOTYPES: ENABLE
 
 ################################################################

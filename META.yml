@@ -1,10 +1,11 @@
 --- #YAML:1.0
 name:               Audio-TagLib
-version:            1.50_01
-abstract:            a library for reading and editing audio meta data, commonly 
+version:            1.50
+abstract:           Library for reading and editing audio meta data
 author:
     - Dongxu, Ma <dongxu@cpan.org>
-license:            perl
+    - Geoffrey Leach <gleach@cpan.org>
+license: perl_5 - The Perl 5 License (Artistic 1 & GPL 1)
 distribution_type:  module
 configure_requires:
     ExtUtils::MakeMaker:  0
@@ -14,7 +15,8 @@ requires:  {}
 no_index:
     directory:
         - t
-        - inc
+          xs
+          sample
 generated_by:       ExtUtils::MakeMaker version 6.50
 meta-spec:
     url:      http://module-build.sourceforge.net/META-spec-v1.4.html

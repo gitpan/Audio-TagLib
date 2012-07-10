@@ -1,32 +1,20 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as 
-# `perl TagLib_FileRef.t'
+use Test::More tests => 16;
 
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
-
-#use Test::More q(no_plan);
-use Test::More tests => 15;
 BEGIN { use_ok('Audio::TagLib::FileRef') };
 
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
-
-my @methods = qw(new DESTROY tag audioProperties file save isNull
-copy _equal);
-can_ok("Audio::TagLib::FileRef", @methods) 						or 
+my @methods = qw(new DESTROY tag audioProperties file save isNull 
+                 addFileTypeResolver copy _equal);
+can_ok("Audio::TagLib::FileRef", @methods) 						    or 
 	diag("can_ok failed");
 
 ok(Audio::TagLib::FileRef->new()->isNull()) 						or 
 	diag("method new() failed");
-my $file = "sample/Discontent.mp3";
+
+my $file = "sample/guitar.mp3";
 my $i = Audio::TagLib::FileRef->new($file);
 my $j = Audio::TagLib::FileRef->new($file, 0, "Fast");
 my $File = Audio::TagLib::FileRef->create($file);
-is($File->name(), $file) 									or 
+is($File->name(), $file) 									        or 
 	diag("method create(file) failed");
 my $k = Audio::TagLib::FileRef->new($File);
 my $l = Audio::TagLib::FileRef->new($i);
@@ -44,15 +32,16 @@ isa_ok($i->audioProperties(), "Audio::TagLib::AudioProperties") 	or
 	diag("method audioProperties() failed");
 isa_ok($i->file(), "Audio::TagLib::File") 							or 
 	diag("method file() failed");
-SKIP: {
-skip "methods qw(save copy addFileTypeResolver)", 0 if 1;
-}
-ok(not $i->isNull()) 										or 
+ok(not $i->isNull()) 										        or 
 	diag("method isNull() failed");
-ok($i == $l) 												or 
+ok($i == $l) 												        or 
 	diag("method _equal(ref) failed");
-ok($i != $j) 												or 
+ok($i != $j) 												        or 
 	diag("method _equal(ref) failed");
+$i->copy($j);
+ok($i == $j) 												        or 
+	diag("method copy(ref) failed");
+# GCL - This result will undoubtedly change from relese to release of taglib
 is(Audio::TagLib::FileRef->defaultFileExtensions()->toString()->toCString(), 
-	"ogg flac mp3 mpc") 									or 
+	"ogg flac oga mp3 mpc wv spx tta") 								or 
 	diag("method defaultFileExtensions() failed");

@@ -1,32 +1,25 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as 
-# `perl TagLib_ID3v2_Frame.t'
+use Test::More tests => 5;
 
-#########################
+BEGIN { use_ok('Audio::TagLib::ID3v2::Frame') };
 
-# change 'tests => 1' to 'tests => last_test_to_print';
-
-use Test::More q(no_plan);
-#use Test::More tests => 5;
-BEGIN { use_ok('Audio::TagLib::ID3v2::Footer') };
-
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
+# Other documented methods (notwithstanding Frame.h) are virtual or protected'
+# In particular, the Frame constructors are protected, which means that a 
+# Frame cannot be instantiated here. Consequently, none of the Frame methods,
+# other than those that are static, will work. Trying to execute them results 
+# in the message:
+#   THIS is not of type Audio::TagLib::ID3v2::Frame
+# which results from the fact that there is no THIS (a pointer to a Frame) available.
 
 my @methods = qw(DESTROY frameID size setData setText toString render
-headerSize textDelimiter);
-can_ok("Audio::TagLib::ID3v2::Frame", @methods) 							or 
+                 setData frameID  headerSize textDelimiter);
+can_ok("Audio::TagLib::ID3v2::Frame", @methods) 							        or 
 	diag("can_ok failed");
 
-cmp_ok(Audio::TagLib::ID3v2::Frame->headerSize(), "==", 10) 				or 
+cmp_ok(Audio::TagLib::ID3v2::Frame->headerSize(), "==", 10) 				        or 
 	diag("method headerSize() failed");
-cmp_ok(Audio::TagLib::ID3v2::Frame->headerSize(2), "==", 6) 				or 
+cmp_ok(Audio::TagLib::ID3v2::Frame->headerSize(2), "==", 6) 				        or 
 	diag("method headerSize() failed");
-cmp_ok(Audio::TagLib::ID3v2::Frame->textDelimiter("Latin1")->data(), "==", undef) or 
+# Returns ByteVector, whose data() method is use to extract result
+cmp_ok(Audio::TagLib::ID3v2::Frame->textDelimiter("Latin1")->Audio::TagLib::ByteVector::data(),
+    "eq", "\c@")                                                                    or 
 	diag("method textDelimiter(Latin1) failed");
-SKIP: {
-skip "more test needed", 1 if 1;
-ok(1);
-}

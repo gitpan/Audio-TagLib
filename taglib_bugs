@@ -1,0 +1,22 @@
+This was file "Bugs" in v 1.4
+Known bugs in libtag.so.1.5
+------------------------------
+
+These will be verified in taglib 1.6.4 and reported there.
+
+o  TagLib::ID3v2::UserTextIdentificationFrame::find static, thus not exported
+o  TagLib::ID3v2::ByteVectorList. toByteVector->data reviving a split.
+    where there was a string ' x '. The x is lost.
+    See t/TagLib_ByteVectorList.t.
+o   Some mp3 version1 files using a sample rate of 44100 will nevertheless
+    get an 'Invalid sample rate' error. Perhaps a badly constructed file?
+     mpegheader.cpp, 235.
+o   TagLib::File::writeBlock() does not +w on -w file, fails instead
+o   File properties, such as +w, are acquired when the FileRef is created.
+    Subsequent mods outside tablib are not noticed.
+o   Audio::TagLib::FLAC::File::ID3v2Tag(1) succeeds, but then after the
+    file is saved, subsequent excutions result in the message:
+     TagLib: FLAC::File::save()
+     This can't be right -- an ID3v2 tag after the start of the FLAC bytestream?
+     Not writing the ID3v2 tag
+o   id3v2framefactory.cpp, 104. <= changed to !=

@@ -1,7 +1,7 @@
 #include "vorbisproperties.h"
 #include "vorbisfile.h"
 
-MODULE = TagLib			PACKAGE = TagLib::Vorbis::Properties
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Vorbis::Properties
 PROTOTYPES: ENABLE
 
 ################################################################

@@ -4,14 +4,21 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
-# Preloaded methods go here.
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -72,9 +79,7 @@ Returns the number of items in the tag.
 
 =item I<void setItemCount(IV $s)>
 
-Set the item count to $s.
-
-see L<itemCount()>
+Set the item count to $s.  See L<The doc for itemCount|itemCount()>
 
 =item I<UV tagSize()>
 
@@ -83,19 +88,19 @@ Returns the tag size in bytes.  This is the size of the frame content
  The size of the entire tag will be this plus the header size, if
   present.
 
-see L<completeTagSize()>
+see L<The doc for completeTagSize|completeTagSize()>
 
 =item I<UV completeTagSize()>
 
 Returns the tag size, including if present, the header size.
 
-see L<tagSize()>
+see L<The doc for tagSize|tagSize()>
 
 =item I<void setTagSize(UV $s)>
 
 Set the tag size to $s.
 
-see L<tagSize()>
+see L<The doc for tagSize|tagSize()>
 
 =item I<UV size()> [static]
 
@@ -126,8 +131,6 @@ Renders the header corresponding to the footer. If headerPresent is
 
 None by default.
 
-
-
 =head1 SEE ALSO
 
 L<Audio::TagLib|Audio::TagLib>
@@ -136,9 +139,16 @@ L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
+
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

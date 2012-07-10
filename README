@@ -45,12 +45,14 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  TagLib version 1.4.* (C/C++ lib)
-  Currently ONLY available on Linux
+  TagLib version 1.5.* (C/C++ lib)
+
+Note this well It has not been tested with later versions.
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2005 - 2006 by Dongxu Ma
+Copyright (C) 2005 - 2010 by Dongxu Ma
+Copyright (C) 2011- 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

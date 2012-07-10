@@ -1,6 +1,6 @@
 #include "uniquefileidentifierframe.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v2::UniqueFileIdentifierFrame
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v2::UniqueFileIdentifierFrame
 PROTOTYPES: ENABLE
 
 ################################################################

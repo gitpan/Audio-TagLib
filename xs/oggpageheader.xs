@@ -1,6 +1,6 @@
 #include "oggpageheader.h"
 
-MODULE = TagLib			PACKAGE = TagLib::Ogg::PageHeader
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Ogg::PageHeader
 PROTOTYPES: ENABLE
 
 ################################################################

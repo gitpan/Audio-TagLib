@@ -1,6 +1,6 @@
 #include "tstringlist.h"
 
-MODULE = TagLib		PACKAGE = TagLib::StringList
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::StringList
 PROTOTYPES: ENABLE
 
 

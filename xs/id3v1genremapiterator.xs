@@ -3,7 +3,7 @@
 #include "tlist.h"
 #include "id3v1genres.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v1::GenreMap::Iterator
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v1::GenreMap::Iterator
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -94,6 +94,7 @@ PPCODE:
 
 #endif
 
+#undef MOREMETHODS
 #ifdef MOREMETHODS
 
 bool 

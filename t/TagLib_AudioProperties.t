@@ -1,19 +1,20 @@
-# Before `make install' is performed this script should be runnable with
-# `make test'. After `make install' it should work as 
-# `perl TagLib_AudioProperties.t'
+use Test::More tests => 6;
 
-#########################
-
-# change 'tests => 1' to 'tests => last_test_to_print';
-
-use Test::More tests => 2;
 BEGIN { use_ok('Audio::TagLib::AudioProperties') };
 
-#########################
-
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
-
 my @methods = qw(DESTROY length bitrate sampleRate channels);
-can_ok("Audio::TagLib::AudioProperties", @methods) 			or 
+can_ok("Audio::TagLib::AudioProperties", @methods) 		    	or 
 	diag("can_ok failed");
+
+# Constructor is protected, so we go around
+my $file = "sample/guitar.mp3";
+my $mpegfile = Audio::TagLib::MPEG::File->new($file);
+my $i = $mpegfile->audioProperties();
+cmp_ok($i->length(), "==", 7) 									or 
+	diag("method length() failed");
+cmp_ok($i->bitrate(), "==", 32) 								or 
+	diag("method bitrate() failed");
+cmp_ok($i->sampleRate(), "==", 44100) 							or 
+	diag("method sampleRate() failed");
+cmp_ok($i->channels(), "==", 2) 								or 
+	diag("method channels() failed");

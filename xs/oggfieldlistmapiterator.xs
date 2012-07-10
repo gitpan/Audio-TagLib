@@ -3,7 +3,7 @@
 #include "tmap.h"
 #include "tlist.h"
 
-MODULE = TagLib			PACKAGE = TagLib::Ogg::FieldListMap::Iterator
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Ogg::FieldListMap::Iterator
 PROTOTYPES: ENABLE
 
 ################################################################

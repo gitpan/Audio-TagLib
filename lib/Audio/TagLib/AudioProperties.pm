@@ -4,21 +4,34 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.41';
+our $VERSION = '1.50';
 
 use Audio::TagLib;
 
+## no critic (ProhibitMixedCaseVars)
+## no critic (ProhibitPackageVars)
 our %_ReadStyle = (
     "Fast"     => 0,
     "Average"  => 1,
     "Accurate" => 2,
 );
 
-# Preloaded methods go here.
+sub read_style { return \%_ReadStyle; }
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
+
+=pod
+
+=begin stopwords
+
+codec
+APIs
+AudioProperties
+bitrate
+Dongxu
+
+=end stopwords
 
 =head1 NAME
 
@@ -28,7 +41,7 @@ properties
 =head1 DESCRIPTION
 
 The values here are common to most audio formats.  For more specific,
-codec dependant values, please see see the subclasses APIs.  This is
+codec dependent values, please see see the subclasses APIs.  This is
 meant to compliment the L<Audio::TagLib::File|Audio::TagLib::File> and
 L<Audio::TagLib::Tag|Audio::TagLib::Tag> APIs in providing a simple interface that
 is sufficient for most applications. 
@@ -37,16 +50,28 @@ is sufficient for most applications.
 
 =item %_ReadStyle
 
+=over 4
+C<our %_ReadStyle = (
+    "Fast"     => 0,
+    "Average"  => 1,
+    "Accurate" => 2,
+);>
+
+Deprecated. See read_style.
+
+=item read_style
+
 Reading audio properties from a file can sometimes be very time
 consuming and for the most accurate results can often involve reading
 the entire file.  Because in many situations speed is critical or the
 accuracy of the  values is not particularly important this allows the
 level of desired accuracy to be set.
 
-C<keys %Audio::TagLib::AudioProperties::_ReadStyle> lists all available
-values used in Perl code. 
+C<keys Audio::TagLib::AudioProperties::read_style()> lists all available
+values used in Perl code. Returns a reference to %_ReadStyle. ReadStyle 
+is set from one of the subsidary classes.
 
-see L<FLAC::Properties|Audio::TagLib::FLAC::Properties>
+See L<FLAC::Properties|Audio::TagLib::FLAC::Properties>
 L<MPC::Properties|Audio::TagLib::MPC::Properties>
 L<MPEG::Properties|Audio::TagLib::MPEG::Properties>
 L<Vorbis::Properties|Audio::TagLib::Vorbis::Properties> 
@@ -57,7 +82,7 @@ Destroys this AudioProperties instance.
 
 =item I<length()> [pure virtual]
 
-Returns the lenght of the file in seconds.
+Returns the length of the file in seconds.
 
 =item I<bitrate()> [pure virtual]
 
@@ -90,9 +115,15 @@ L<Audio::TagLib|Audio::TagLib>
 
 Dongxu Ma, E<lt>dongxu@cpan.orgE<gt>
 
+=head1 MAINTAINER
+
+Geoffrey Leach GLEACH@cpan.org
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2005 by Dongxu Ma
+Copyright (C) 2005-2010 by Dongxu Ma
+
+Copyright (C) 2011 - 2012 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

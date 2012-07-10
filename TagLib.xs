@@ -1,6 +1,8 @@
 /***************************************************************************
-    copyright            : (C) 2005 - 2006 by Dongxu Ma
+    copyright            : (C) 2005 - 2010 by Dongxu Ma
     email                : dongxu@cpan.org
+    copyright            : (C) 2011 - 2012 - Geoffrey Leach
+    email                : gleach@cpan.org
  ***************************************************************************
  *   This library is free software; you can redistribute it and/or modify 
  *   it under the same terms as Perl itself, either Perl version 5.8.7 or,
@@ -73,6 +75,8 @@ INCLUDE:	xs/id3v2tagframelistmap.xs
 INCLUDE:	xs/id3v2tagframelistmapiterator.xs
 INCLUDE:	xs/id3v2tagframelist.xs
 INCLUDE:	xs/id3v2tagframelistiterator.xs
+#GCL
+INCLUDE:    xs/id3v2relativevolumeframe.xs
 INCLUDE:	xs/xiphcomment.xs
 INCLUDE:	xs/oggfieldlistmap.xs
 INCLUDE:	xs/oggfieldlistmapiterator.xs
@@ -90,7 +94,8 @@ INCLUDE:	xs/id3v2synchdata.xs
 
 INCLUDE:	xs/attachedpictureframe.xs
 INCLUDE:	xs/commentsframe.xs
-INCLUDE:	xs/relativevolumeframe.xs
+#GCL
+#INCLUDE:	xs/relativevolumeframe.xs
 INCLUDE:	xs/textidentificationframe.xs
 INCLUDE:	xs/uniquefileidentifierframe.xs
 INCLUDE:	xs/unknownframe.xs

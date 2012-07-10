@@ -1,6 +1,6 @@
 #include "id3v1tag.h"
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v1::Tag
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v1::Tag
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -178,7 +178,7 @@ CODE:
 ################################################################
 ################################################################
 
-MODULE = TagLib			PACKAGE = TagLib::ID3v1::StringHandler
+MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::ID3v1::StringHandler
 PROTOTYPES: ENABLE
 
 ################################################################
