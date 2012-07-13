@@ -34,4 +34,4 @@ TODO: {
         diag("method bitrateNominal() failed");
     cmp_ok($i->bitrateMinimum(), "==", 0) 							    or 
         diag("method bitrateMinimum() failed");
-}
+};

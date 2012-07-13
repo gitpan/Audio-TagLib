@@ -1,5 +1,9 @@
 Revision history for Perl extension TagLib.
 
+1.51 Wed Jul 11 16:21:06 PDT 2012
+    - Begin testing with taglib 1.7.2
+    - Looks good, except that I haven't covered new functionality
+
 1.50 Tue Jul 10 08:26:45 PDT 2012
     - Final
 

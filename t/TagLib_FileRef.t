@@ -43,5 +43,5 @@ ok($i == $j) 												        or
 	diag("method copy(ref) failed");
 # GCL - This result will undoubtedly change from relese to release of taglib
 is(Audio::TagLib::FileRef->defaultFileExtensions()->toString()->toCString(), 
-	"ogg flac oga mp3 mpc wv spx tta") 								or 
+	"ogg flac oga mp3 mpc wv spx tta aif aiff wav ape") 								or 
 	diag("method defaultFileExtensions() failed");

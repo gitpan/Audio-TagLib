@@ -45,9 +45,16 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  TagLib version 1.5.* (C/C++ lib)
+  libtag.so and taglib-config
+  The latter is provided by the taglib-devel package
 
 Note this well It has not been tested with later versions.
+
+TESTING
+
+Testing has been conducted with the taglib versions 1.5 and 1.7.2. It's assumed
+that versions inbetween will work as well :-) Functionality of this package has not
+been updated to match 1.7.2. Contributions are welcome.
 
 COPYRIGHT AND LICENCE
 

@@ -8,19 +8,19 @@ sub bail($) {
     exit(0);
 }
 
-# Check TagLib (taglib.so) is installed and that the version is correct.
+# Check TagLib (taglib.so) is installed.
 # Note that this depends on the search path -- 
 # If the one you want is down-path, then modify your
 # PATH environment variable, or edit for a fixed path
 
-bail('Please install the taglib C++ library first')
+bail('Please install the taglib C++ library first. Did you install taglib-devel?')
   unless system('taglib-config --version >& /dev/null') == 0;
   
 chomp(my $libver = qx{taglib-config --version});
 
-bail( "This module supports ONLY TagLib version 1.5.*\n" .
-      "You have $libver. Please install taglib ver 1.5.*")
-  unless $libver =~ m/^1\.5/;
+#bail( "This module supports TagLib version 1.7.2.*\n" .
+#      "You have $libver. Please install taglib ver 1.7.2.*")
+#  unless $libver =~ m/^1\.7\.2/;
 
 # Configure compiler
 my $CC = 'g++';

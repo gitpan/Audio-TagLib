@@ -18,6 +18,8 @@ The test report shows this
 
 Test Summary Report
 -------------------
+t/TagLib_ID3v2_FrameFactory.t                  (Wstat: 65280 Tests: 9 Failed: 0)
+Non-zero exit status: 255
 t/TagLib_Ogg_Vorbis_File.t                     (Wstat: 65280 Tests: 3 Failed: 0)
 Non-zero exit status: 255
 t/TagLib_Ogg_Vorbis_Properties.t               (Wstat: 65280 Tests: 3 Failed: 0)
@@ -30,3 +32,5 @@ Result: FAIL
 Failed 4/60 test programs. 0/663 subtests failed.
 
 The listed tests have TODO blocks. the failures are expected.
+
+When run with Test::Harness, these failures are ignored.

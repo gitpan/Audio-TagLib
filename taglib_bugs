@@ -2,7 +2,8 @@ This was file "Bugs" in v 1.4
 Known bugs in libtag.so.1.5
 ------------------------------
 
-These will be verified in taglib 1.6.4 and reported there.
+With  the exceptopn of the last, no effort has been made to verify these in
+later versions of taglib.
 
 o  TagLib::ID3v2::UserTextIdentificationFrame::find static, thus not exported
 o  TagLib::ID3v2::ByteVectorList. toByteVector->data reviving a split.
@@ -19,4 +20,4 @@ o   Audio::TagLib::FLAC::File::ID3v2Tag(1) succeeds, but then after the
      TagLib: FLAC::File::save()
      This can't be right -- an ID3v2 tag after the start of the FLAC bytestream?
      Not writing the ID3v2 tag
-o   id3v2framefactory.cpp, 104. <= changed to !=
+o   id3v2framefactory.cpp, 104. <= should be changed to !=
