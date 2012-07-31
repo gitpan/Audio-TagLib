@@ -13,14 +13,10 @@ sub bail($) {
 # If the one you want is down-path, then modify your
 # PATH environment variable, or edit for a fixed path
 
-bail('Please install the taglib C++ library first. Did you install taglib-devel?')
-  unless system('taglib-config --version >& /dev/null') == 0;
+bail("Please install the taglib C++ library first. \nI need the package that has taglib-config")
+  unless system('taglib-config --version > /dev/null') == 0;
   
 chomp(my $libver = qx{taglib-config --version});
-
-#bail( "This module supports TagLib version 1.7.2.*\n" .
-#      "You have $libver. Please install taglib ver 1.7.2.*")
-#  unless $libver =~ m/^1\.7\.2/;
 
 # Configure compiler
 my $CC = 'g++';

@@ -119,7 +119,7 @@ $i = Audio::TagLib::ByteVector->new("blah blah");
 # cmp_ok($i->checksum(), "==", 1911406542) or
 cmp_ok($i->checksum(), "==", 1698033220)                                            or
 	diag("method checksum failed");
-cmp_ok($i->toUInt(), "==", 1651269992)	                                            or 
+cmp_ok($i->toUInt(), "==", 1.52269992)	                                            or 
 	diag("method toUInt failed");
 cmp_ok($i->toShort(), "==", 25196)	                                                or 
 	diag("method toShort failed");
