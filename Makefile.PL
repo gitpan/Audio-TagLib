@@ -17,6 +17,7 @@ bail("Please install the taglib C++ library first. \nI need the package that has
   unless system('taglib-config --version > /dev/null') == 0;
   
 chomp(my $libver = qx{taglib-config --version});
+print "Using taglib v$libver\n";
 
 # Configure compiler
 my $CC = 'g++';

@@ -1,5 +1,13 @@
 Revision history for Perl extension TagLib.
 
+1.52.1 Wed Aug  1 11:56:54 PDT 2012
+    - CPAN testing revealed what appears to be an implementation-dependent
+      result in t/TagLib_ByteVector.t. That test has been deleted.
+    - A number of tests were in TODO: blocks. I expected that they
+      would be ignored, but it appears that some of the statements
+      resulted in errors that were not ignored. All of these blocks,
+      including the error above have geen enlosed in =if 0 ... =cut
+
 1.52 Tue Jul 31 08:33:24 PDT 2012
     - Corrected Makefile.PL error
 

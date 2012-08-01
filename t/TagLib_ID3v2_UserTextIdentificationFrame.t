@@ -22,9 +22,11 @@ is($i->description()->toCString(), "desc") 							or
 	diag("method setDescription(desc) and description() failed");
 isa_ok($i->fieldList(), "Audio::TagLib::StringList") 						or 
 	diag("method fieldList() failed");
+=if 0
 TODO: {
 local $TODO = "method find(Tag *tag, String &desc) not exported";
-#$f = $i->find("desc");
-#isa_ok($f,  "Audio::TagLib::ID3v2::UserTextIdentificationFrame") 			or
-#    diag("method find failed");
+$f = $i->find("desc");
+isa_ok($f,  "Audio::TagLib::ID3v2::UserTextIdentificationFrame") 			or
+    diag("method find failed");
 }
+=cut

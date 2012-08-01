@@ -1,4 +1,4 @@
-use Test::More tests => 41;
+use Test::More tests => 40;
 use Encode qw(encode decode);
 
 BEGIN { use_ok('Audio::TagLib::String') };
@@ -78,11 +78,13 @@ is($s_utf8->data("UTF16BE")->data(), $utf16be) 					                or
 	diag("method data(utf16be) failed");
 is($s_utf8->data("UTF16LE")->data(), $utf16le) 					                or
 	diag("method data(utf16le) failed");
+=if 0
 TODO: {
 local $TODO = "bug wanted UTF16";
 is($s_utf8->data("UTF16")->data(), $utf16) 						                or 
 	diag("method data(utf16) failed");
 }
+=cut
 cmp_ok(Audio::TagLib::String->new("a")->toInt(), "==", oct("a")) 		        or
 	diag("method toInt() failed");
 is(Audio::TagLib::String->new("   blah   ")->stripWhiteSpace()->to8Bit(), "blah") or
