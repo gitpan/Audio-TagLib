@@ -1,6 +1,6 @@
 Revision history for Perl extension TagLib.
 
-1.54.0 Wed Aug  1 11:56:54 PDT 2012
+1.54.1 Wed Aug  1 11:56:54 PDT 2012
     - CPAN testing revealed what appears to be an implementation-dependent
       result in t/TagLib_ByteVector.t. That test has been deleted.
     - A number of tests were in TODO: blocks. I expected that they
