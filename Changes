@@ -7,6 +7,8 @@ Revision history for Perl extension TagLib.
       would be ignored, but it appears that some of the statements
       resulted in errors that were not ignored. All of these blocks,
       including the error above have geen enlosed in =if 0 ... =cut
+    - Finally, a test in t/TagLib_ID3v2_FrameList.t had a race condition
+      resulting from a failure to use parens. 
 
 1.52 Tue Jul 31 08:33:24 PDT 2012
     - Corrected Makefile.PL error

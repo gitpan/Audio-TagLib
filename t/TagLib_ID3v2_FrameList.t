@@ -33,13 +33,38 @@ $tag->setYear(1981);
 $tag->setTrack(3);
 
 my $j = $tag->frameList();
+# $j is  List of Frames of Audio::TagLib::ID3v2::Tag and inherits from TagLib::Tag
+# framelist returns the FrameList, frames in the order that they were inserted
+# i.e., not sorted; see above.
+
+# $i is  Audio::TagLib::ID3v2::FrameList
+# Framelist is a List of type Frame (List<Frame>)
+# insert, begin and end are all methods of type List<T>
+# This uses the end() iterator (persumably provides the end of the List)
+# to insert the front item from the framelist $j. which (I'm guessing here)
+# is the Title, etc from above.
 $i->insert($i->end(), $j->front());
+
+# Ao, we get the front item from $i, and verify that its the title
+# thus verifying that its what was inserted first
 like($i->front()->render()->data(), qr/^TIT2.*?title$/) 		            or 
 	diag("method insert(it, item) & front() failed");
+
+# This verifies that in $i back() is the same as fromt()
+# i.e., $i is a FrameList with one member
 like($i->back()->render()->data(), qr/^TIT2.*?title$/) 			            or 
 	diag("method back() failed");
+
+# Testing complaint:
+#   Failed test at t/TagLib_ID3v2_FrameList.t line 42.
+#                   'TIT2<80><80><80>^F<80><80><80>title'
+#     doesn't match '(?^:^TPE1.*?artist$)'
+# sortedInsert is defined for FrmeList, and inserts the value into an already-sorted list 
 $i->sortedInsert($j->getItem(1));
-like($i->getItem(1)->render()->data(), qr/^TPE1.*?artist$/) 	            or 
+# The result here was inconsistent, perldb giving a result consistent with the
+# complaint above, while normal testing was OK. Adding the parens around the 
+# call to getItem solved the problem
+like(($i->getItem(1))->render()->data(), qr/^TPE1.*?artist$/) 	            or 
 	diag("method sortedInsert(item) and getItem(i) failed");
 $i->append($j->getItem(2));
 like($i->back()->render()->data(), qr/^TALB.*?album$/) 			            or 
