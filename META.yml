@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Audio-TagLib
-version:            1.51
+version:            1.56
 abstract:           Library for reading and editing audio meta data
 author:
     - Dongxu, Ma <dongxu@cpan.org>

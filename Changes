@@ -1,5 +1,8 @@
 Revision history for Perl extension TagLib.
 
+1.56  Sun Aug  5 15:51:04 PDT 2012
+    -  Added #undef do_open and do_close to deal with complaints from C++
+
 1.55  Sat Aug  4 09:28:40 PDT 2012
     -  Compile errors: in xs/apeitem.xs do_open, do_close cause problems, not used
 
