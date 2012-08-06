@@ -9,9 +9,6 @@
  *   at your option, any later version of Perl 5 you may have available.
  ***************************************************************************/
 
-#undef do_open
-#undef do_close
-
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
