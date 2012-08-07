@@ -69,5 +69,9 @@ WriteMakefile(
           )
         : ()
     ),
+    PREREQ_PM => {
+        "Test::Output" => "0",
+        "Test::Deep" => "0",
+    },
 );
 

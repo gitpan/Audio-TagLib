@@ -1,5 +1,12 @@
 Revision history for Perl extension TagLib.
 
+1.58  Tue Aug  7 15:11:29 PDT 2012
+   -   Added a PREREQ_PM to Makefile.PL for TEST::Output
+       Ditto Test::Deep, just to be safe
+
+1.57  Tue Aug  7 15:11:29 PDT 2012
+   -   Another attempt fixing do-open, do_close. Seems to have worked
+
 1.56  Sun Aug  5 15:51:04 PDT 2012
     -  Added #undef do_open and do_close to deal with complaints from C++
 

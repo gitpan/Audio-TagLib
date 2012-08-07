@@ -2,7 +2,6 @@ taglib_bugs
 Changes
 INSTALL
 MANIFEST
-META.yml                                 Module meta-data (added by MakeMaker)
 Makefile.PL
 README
 TODO
