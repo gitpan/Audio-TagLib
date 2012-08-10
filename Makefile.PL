@@ -70,8 +70,15 @@ WriteMakefile(
         : ()
     ),
     PREREQ_PM => {
-        "Test::Output" => "0",
-        "Test::Deep" => "0",
+        "Encode"       => 0,
+        "Test::Deep"   => 0,
+        "File::Slurp"  => 0,
+        "Test::More"   => 0,
+        "Test::Output" => 0,
+    },
+     "CONFIGURE_REQUIRES" => {
+        "ExtUtils::MakeMaker" => 0,
+        "Config"              => 0,
     },
 );
 

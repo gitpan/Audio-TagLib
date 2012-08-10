@@ -1,6 +1,5 @@
 taglib_bugs
 Changes
-INSTALL
 MANIFEST
 Makefile.PL
 README
@@ -207,3 +206,5 @@ xs/vorbisproperties.xs
 xs/xingheader.xs
 xs/xiphcomment.xs
 xs/relativevolumeframe.xs
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)

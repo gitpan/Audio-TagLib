@@ -1,5 +1,9 @@
 Revision history for Perl extension TagLib.
 
+1.59  Thu Aug  9 14:53:03 PDT 2012
+   -   Removed the INSTALL file. The essence of redundant!
+   -   Added more modules to PREREQ_PM.
+
 1.58  Tue Aug  7 15:11:29 PDT 2012
    -   Added a PREREQ_PM to Makefile.PL for TEST::Output
        Ditto Test::Deep, just to be safe

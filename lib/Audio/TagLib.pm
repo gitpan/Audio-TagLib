@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.58';
+our $VERSION = '1.59';
 
 use XSLoader;
 XSLoader::load( 'Audio::TagLib', $VERSION );
@@ -98,8 +98,7 @@ Dongxu
 
 =head1 NAME
 
-Audio::TagLib -  a library for reading and editing audio meta data, commonly 
-known as I<tags>.
+Audio::TagLib -  A library for reading and editing audio meta data, commonly known as "tags".
 
 =head1 SYNOPSIS
 
@@ -126,7 +125,7 @@ between tag and file formats can all be ignored.
 
 =head1 VERSION
 
-1.58
+1.59
 
 =head1 DESCRIPTION
 
