@@ -1,5 +1,8 @@
 Revision history for Perl extension TagLib.
 
+1.60  Sat Aug 11 10:37:43 PDT 2012
+   -   Trying to resolve do_open again
+
 1.59  Thu Aug  9 14:53:03 PDT 2012
    -   Removed the INSTALL file. The essence of redundant!
    -   Added more modules to PREREQ_PM.

@@ -1,18 +1,4 @@
 
-#ifdef do_open(a,b,c,d,e,f,g)
-#undef do_open(a,b,c,d,e,f,g)
-#undef do_open
-#undef do_close
-#undef do_close(a,b)
-#endif
-#include "apeitem.h"
-#ifndef do_open
-#define do_open                 Perl_do_open
-#define do_open(a,b,c,d,e,f,g)  Perl_do_open(aTHX_ a,b,c,d,e,f,g)
-#define do_close                Perl_do_close
-#define do_close(a,b)           Perl_do_close(aTHX_ a,b)
-#endif
-
 MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::APE::Item
 PROTOTYPES: ENABLE
 

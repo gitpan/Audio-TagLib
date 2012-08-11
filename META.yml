@@ -25,4 +25,4 @@ requires:
   Test::More: 0
   Test::Output: 0
   perl: 5.008001
-version: 1.59
+version: 1.60
