@@ -1,5 +1,8 @@
 Revision history for Perl extension TagLib.
 
+1.61  Mon Aug 13 21:12:54 PDT 2012
+   -  Added -liconv to freebsd libs. Grasping at straws
+
 1.60  Sat Aug 11 10:37:43 PDT 2012
    -   Trying to resolve do_open again
 

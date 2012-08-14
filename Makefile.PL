@@ -25,7 +25,6 @@ my $CC = 'g++';
 chomp(my $libs   = qx{taglib-config --libs});
 
 # Configure compile flags
-#chomp(my $cflags = qx{taglib-config --cflags});
 my $cflags = $Config{'ccflags'};
 
 # Configure includes
@@ -41,9 +40,11 @@ my $ldd =  $Config{'lddlflags'} . ' ' .
 my $define;
 if ( $Config{'osname'} eq 'darwin' ) {
     $define = '-D_BSD_ICONV -DNO_DOXYGEN';
+    $libs .= ' -L/System/Library/Perl/lib/'. $Config{version}. ' -lperl -liconv';
 }
 elsif ( $Config{'osname'} eq 'freebsd' ) {
     $define = '-D_BSD_ICONV -DNO_DOXYGEN';
+    $libs .= ' -liconv';
 }
 
 #$Verbose = 2;
