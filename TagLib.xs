@@ -17,18 +17,45 @@
 
 #include "iconv_wrap.h"
 
-#ifdef do_open(a,b,c,d,e,f,g)
-#undef do_open(a,b,c,d,e,f,g)
+// Sisyphus-01 modifiy defines to remove warnings
+// Festus-04 further refinement
+
+#include "taglib.h"
+
+#if defined(write)
+#undef write
+#endif
+
+#if defined(read)
+#undef read
+#endif
+
+#if defined(setbuf)
+#undef setbuf
+#endif
+
+#if defined(do_open)
 #undef do_open
-#undef do_close(a,b)
+#endif
+
+#if defined(do_close)
 #undef do_close
 #endif
-#include "apeitem.h"
-#ifndef do_open
-#define do_open                 Perl_do_open
-#define do_open(a,b,c,d,e,f,g)  Perl_do_open(aTHX_ a,b,c,d,e,f,g)
-#define do_close                Perl_do_close
-#define do_close(a,b)           Perl_do_close(aTHX_ a,b)
+
+#ifdef __MINGW32__
+
+#ifdef read
+#undef read
+#endif
+
+#ifdef write
+#undef write
+#endif
+
+#ifdef setbuf
+#undef setbuf
+#endif
+
 #endif
 
 MODULE = Audio::TagLib		PACKAGE = Audio::TagLib

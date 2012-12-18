@@ -1,5 +1,32 @@
 Revision history for Perl extension TagLib.
 
+1.62  Sat Sep  8 14:49:44 PDT 2012
+   - Patches for [rt.cpan.org #79442], [rt.cpan.org #79474] and [rt.cpan.org #79480]
+        making Windoze work 
+   - Patches for Win32 and FreeBSD, courtsey of Festus Hagen
+      Festus-01: xs/stringiterator.xs
+      iconv_open() fails, incorrect character set names, iconv expects a hyphen
+      in UTF names.
+      
+      Festus-02: xs/tstring.xs 
+      Changing where *fromcode is assigned it's value to a hyphenated version causes
+      implications further down the line, including with Taglib
+      Patch also resolves: warning: deprecated conversion from string constant to
+      'char*'
+
+      Festus-03: t/TagLib_ID3v2_Header.t and t/TagLib_APE_Item.t
+      Improvements to value checking
+
+      Festus-04: TagLib.xs and xs/apeitem.xs
+      Additional refinement to defines.
+
+    - Patch for tagLib.xs courtsey of Sisyphus
+      Sisyphus-01: MS Windows
+      Changes to defines
+
+    - Updates to Makefile.PL courtsey of Sisyphus
+      Sisyphus-02 /dev/null not portable
+      
 1.61  Mon Aug 13 21:12:54 PDT 2012
    -  Added -liconv to freebsd libs. Grasping at straws
 

@@ -1,4 +1,4 @@
-use Test::More tests => 14;
+use Test::More tests => 15;
 
 BEGIN { use_ok('Audio::TagLib::APE::Item') };
 
@@ -22,8 +22,19 @@ is($i->key()->toCString(), $key->toCString()) 			             or
 	diag("method key() failed");
 is($i->value()->data(),  undef) 				                     or 
 	diag("method value() failed");
-cmp_ok($i->size(), "==", 13) 							             or 
-	diag("method size() failed");
+# Patch Festus-03 rt.cpan.org #79942
+#cmp_ok($i->size(), "==", 13) 							             or 
+#
+# from taglib-1.8/taglib/ape/apeitem.cpp:170
+# int result = 8 + d->key.size() /* d->key.data(String::UTF8).size() */ + 1;
+# So, $key       = 13 ((test) + 9)
+#     $value     = 14 (This is a test)
+#     $i->size() = 27
+#
+cmp_ok($i->size(), "==", 27)                                        or 
+    diag("method size() failed");
+is($i->toString()->toCString(), $value->toCString())                or
+    diag("method toString() failed");
 is($i->toString()->toCString(), $value->toCString()) 	             or 
 	diag("method toString() failed");
 is($i->toStringList()->toString()->toCString(), $value->toCString()) or

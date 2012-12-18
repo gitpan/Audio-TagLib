@@ -75,13 +75,26 @@ cmp_ok($i->footerPresent(), '==', 1)                                        or
 	diag("method footerPresent() failed");
 
 # Render changes things a bit
-# The point to this test is to demonstrate thtat the
+# The point to this test is to demonstrate that the
 # render() method discards non-current values in the header.
-# So, for example, the major version is changes from 2 to 4
+# So, for example, the major version is changed from 2 to 4
 # The experimentalIndicator flag is not cleared (bug??), so
 # we replicate it in our baseline.
 
-$new_head = "ID3\x{04}\x{0}\x{20}\x{0}\x{0}\x{0}\x{0}";
+# Patch Festus-03 rt.cpan.org #79942
+#$new_head = "ID3\x{04}\x{0}\x{20}\x{0}\x{0}\x{0}\x{0}";
+# 9/25/2012
+# According to taglib-1.8/taglib/mpeg/id3v2/id3v2header.cpp:render()
+# The version is always set to 2.4.0 (4.0), however as of taglib-1.8
+#   The majorVersion is carried through as is.
+#   The revisionNumber is set to 0 (Zero).
+#   The experimentalIndicator flag is carried through as is.
+#   The rest are unsupported by taglib therfore set to false:
+#     unsynchronisation
+#     extendedHeader
+#     footerPresent
+#
+$new_head = "ID3\x{02}\x{0}\x{20}\x{0}\x{0}\x{0}\x{0}";
 $new_data = Audio::TagLib::ByteVector->new($new_head, 10);
 $new = convert_bytevector($new_data);
 $render = convert_bytevector($i->render());

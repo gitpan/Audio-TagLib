@@ -1,8 +1,8 @@
-taglib_bugs
 Changes
 MANIFEST
 Makefile.PL
 README
+README.windows
 TODO
 TagLib.xs
 include/iconv_wrap.h

@@ -1,0 +1,69 @@
+To build/use Audio::Taglib, here are the steps, courtsey of
+Festus Hagen <festushagen2002@yahoo.com>
+
+1. Build/Install Taglib 1.9 (or greater)
+
+o If a binary of TagLib is available, you should use it. Otherwise, you can
+  download the source from http://developer.kde.org/~wheeler/taglib.html
+  However (the bad news) you will still need to have the following packages
+  available to build Audio::Taglib.
+
+To do the builds, one needs:
+
+1. Strawberry Perl (Others untested, no desire to use anything else personally)
+
+2. CMake
+
+They both work out of the box if they get added to the Path environment
+variable during installation
+
+To build TagLib, once you've downloaded the source and cd'd to the directory,
+these commands will build the TagLib shared library
+
+#cmake -G "MinGW \
+Makefiles" -DENABLE_STATIC=OFF -DCMAKE_BUILD_TYPE=Release \
+-DZLIB_INCLUDE_DIR=C:/Strawberry/c/include \
+-DZLIB_LIBRARY=C:/Strawberry/c/lib/libzlib.a\
+-DCMAKE_INSTALL_PREFIX=C:/Libraries/Taglib \
+-DCMAKE_MAKE_PROGRAM=C:/Strawberry/c/bin/gmake.exe \
+-DCMAKE_CXX_COMPILER=C:/Strawberry/c/bin/g++.exe -DNO_ITUNES_HACKS=ON \
+-DBUILD_EXAMPLES=ON .
+     DON'T MISS    ^^
+#gmake
+#gmake install
+
+Now for Audio::Taglib, once taglib.so has been installed
+
+1. Download Audio-TagLib
+2. Extract Audio-TagLib
+3. cd (to extracted Audio-TagLib location)
+4. perl Makefile.PL
+5. dmake
+6. dmake install
+
+**** EXAMPLE CMAKE for Taglib Shared Library
+
+**** EXAMPLE Path environment variable addition defined by
+CMAKE_INSTALL_PREFIX=C:/Libraries/Taglib:
+;C:\Libraries\Taglib\bin
+
+**** That pretty much covers it for a Shared Taglib library build.
+In reality ZLIB is not REQUIRED for a Shared Library build, however it does not
+hurt for it to be there, it'll be ignored, it is REQUIRED for a Static build.
+
+**** EXAMPLE CMAKE for Taglib Static Library
+cmake option changes:
+ENABLE_STATIC=ON
+BUILD_EXAMPLES=OFF
+
+Then run perl Makefile.PL with TAGLIB_STATIC like:
+perl Makefile.PL TAGLIB_STATIC
+
+**** That covers the Static Taglib library changes
+
+
+I am not a cpan member so I don't know the cpan process.
+
+Not much of a Doc writer myself, tend to get a bit windy and over complicated
+... :)
+

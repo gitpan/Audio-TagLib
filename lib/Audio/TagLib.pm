@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.61';
+our $VERSION = '1.62';
 
 use XSLoader;
 XSLoader::load( 'Audio::TagLib', $VERSION );
@@ -125,7 +125,7 @@ between tag and file formats can all be ignored.
 
 =head1 VERSION
 
-1.61
+1.62
 
 =head1 DESCRIPTION
 
@@ -226,7 +226,14 @@ Refer to I<Bugs> in the top level of the package
 
 =head1 CREDITS
 
+The following have provided invaluable assistance in the debugging of TagLib.pm. Responsiblity 
+for errors, omissions and stupid goofs lies solely with the maintainer.
+
 Scott Wheeler wheeler@kde.org
+
+Festus Hagen festushagen2002@yahoo.com
+
+Sisyphus sisyphus@cpan.org
 
 =head1 AUTHOR
 

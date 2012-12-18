@@ -14,7 +14,9 @@ TagLib::String *
 TagLib::String::new(...)
 PROTOTYPE: ;$$
 PREINIT:
-	char *encode, *fromcode;
+        // Patch Festus-02 rt.cpan.org #79474
+	// char *encode, *fromcode; 
+	const char *encode, *fromcode;
 	enum TagLib::String::Type t;
 	bool is_copy_from_string = TRUE;
 	iconv_t codec;
@@ -131,7 +133,21 @@ CODE:
 			/* any other encodings converted to utf8 */
 			//sv_dump(ST(1));
 			//printf("fromcode = %s\n", fromcode);
-			if(!(codec = iconv_open("UTF8", fromcode)))
+                        // Patch Festus-02 tstring.xs:
+			// if(!(codec = iconv_open("UTF8", fromcode))) 
+			const char *from_code;
+            if(strncasecmp(fromcode, "UTF8", 4) == 0) {
+                from_code = "UTF-8";
+            } else if(strncasecmp(fromcode, "UTF16BE", 7) == 0) {
+                from_code = "UTF-16BE";
+            } else if(strncasecmp(fromcode, "UTF16LE", 7) == 0) {
+                from_code = "UTF-16LE";
+            } else if(strncasecmp(fromcode, "UTF16", 5) == 0) {
+                from_code = "UTF-16";
+            } else
+                from_code = fromcode;
+			if(!(codec = iconv_open("UTF-8", from_code)))
+                        // end of Festus-02
 				croak("iconv_open failed, check your encode");
 			/* inlen MUST be the extract byte length of string */
 			/* the terminal '\0' should NOT be included in length */

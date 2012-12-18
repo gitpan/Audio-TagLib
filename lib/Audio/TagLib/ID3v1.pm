@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.61';
+our $VERSION = '1.62';
 
 use Audio::TagLib;
 

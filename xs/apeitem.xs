@@ -1,3 +1,4 @@
+#include "apeitem.h" // Festus-04
 
 MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::APE::Item
 PROTOTYPES: ENABLE

@@ -56,6 +56,38 @@ Testing has been conducted with the taglib versions 1.5 and 1.7.2. It's assumed
 that versions inbetween will work as well :-) Functionality of this package has not
 been updated to match 1.7.2. Contributions are welcome.
 
+PROBLEMS WITH do_open.
+
+Here's the problem.
+
+g++ ... TagLib.c
+In file included from /usr/include/c++/4.2/bits/basic_ios.h:44,
+                 from /usr/include/c++/4.2/ios:50,
+                 from /usr/include/c++/4.2/ostream:45,
+                 from /usr/local/include/taglib/tbytevector.h:33,
+                 from /usr/local/include/taglib/tbytevectorlist.h:30,
+                 from TagLib.c:178:
+/usr/include/c++/4.2/bits/locale_facets.h:4420:40: error: macro "do_open"
+requires 7 arguments, but only 2 given
+/usr/include/c++/4.2/bits/locale_facets.h:4486:55: error: macro "do_open"
+requires 7 arguments, but only 2 given
+
+and the analysis (from the module-authors list)
+
+The problem has nothing to do with perl versions. It is simple and
+highly annoying: perl has a do_open macro, but libstdc++ has do_open
+methods. This clashes in ugly ways. The simplest way to deal with this
+is to undefine do_open before loading any C++ headers, but you may hit
+other defines (in particular do_close). Perl's API is made for the
+flat namespaces of C, not the hierarchical namespacese of C++. Macro's
+that are almost sane in C turn out to be highly problematic in C++.
+
+It gets even worse on Windows, where perl will define short macros
+such as read() and write() by default. The NO_XSLOCKS define is your
+friend there.
+
+The solution is found in the definitions in TagLib.xs
+
 COPYRIGHT AND LICENCE
 
 Copyright (C) 2005 - 2010 by Dongxu Ma

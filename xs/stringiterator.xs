@@ -50,7 +50,9 @@ PPCODE:
 //USEWCHAR
 	/* iterator for String */
 	wchar_t & data = **THIS;
-	iconv_t codec = iconv_open("UTF8", "WCHAR_T");
+	/* Patch, Festus-01 rt.cpan.org #79474
+       iconv_t codec = iconv_open("UTF8", "WCHAR_T"); */
+	iconv_t codec = iconv_open("UTF-8", "WCHAR_T");
 	if(codec == (iconv_t)(-1))
 		croak("iconv_open failed");
 	char *inbuf, *outbuf;
