@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.62';
+our $VERSION = '1.63';
 
 use XSLoader;
 XSLoader::load( 'Audio::TagLib', $VERSION );
@@ -125,7 +125,7 @@ between tag and file formats can all be ignored.
 
 =head1 VERSION
 
-1.62
+1.63
 
 =head1 DESCRIPTION
 
@@ -234,6 +234,8 @@ Scott Wheeler wheeler@kde.org
 Festus Hagen festushagen2002@yahoo.com
 
 Sisyphus sisyphus@cpan.org
+
+CHOCOLATE choclate@cpan.org
 
 =head1 AUTHOR
 

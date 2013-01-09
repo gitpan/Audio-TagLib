@@ -1,5 +1,14 @@
 Revision history for Perl extension TagLib.
 
+1.63 Sun Dec 23 13:02:04 PST 2012
+    - taglib version-dependent tests, beginning in 1.8.0
+        These tests had their result changed as a result of taglib bug fixes
+        t/TagLib_ID3v2_Header.t, t/TagLib_APE_Item.t
+
+    - Changes to xs to remove the use of WCHAT_T, which is system dependent,
+      and should never appear in "portable" code. Fixes [rt.cpan.org #82529]
+      Kudos to Festus, who did all of the work.
+
 1.62  Sat Sep  8 14:49:44 PDT 2012
    - Patches for [rt.cpan.org #79442], [rt.cpan.org #79474] and [rt.cpan.org #79480]
         making Windoze work 

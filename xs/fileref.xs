@@ -14,7 +14,9 @@ TagLib::FileRef::new(...)
 PROTOTYPE: ;$$$
 PREINIT:
 	char * fileName;
-	char * style = "Average";
+    // Patch Festus Hagen 1.62.fh7 - rt.cpan.org #82298
+	char average[] = "Average";
+	char * style = average;
 	TagLib::File * file;
 	TagLib::FileRef * ref;
 INIT:

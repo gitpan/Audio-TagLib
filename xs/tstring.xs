@@ -349,7 +349,12 @@ CODE:
 	inbuf = (char *)&wc;
 	outbuf = mb;
 	inlen = sizeof(wchar_t)/sizeof(char);
-	codec = iconv_open("UTF-8", "WCHAR_T");
+    /* Festus Hagen 1.62.fh8 - [rt.cpan.org #82529] # */
+    /* WCHAR_T is system dependent. */
+    /* Taglib uses UTF-16BE internally */
+    /* UTF-16LE is what Perl uses internally? */
+    /*codec = iconv_open("UTF-8", "WCHAR_T");*/
+    codec = iconv_open("UTF-8", "UTF-16LE");
 	if(!codec)
 		croak("iconv_open failed in String::_toArray");
 	iconv(codec, NULL, NULL, NULL, NULL);

@@ -17,8 +17,7 @@
 
 #include "iconv_wrap.h"
 
-// Sisyphus-01 modifiy defines to remove warnings
-// Festus-04 further refinement
+// Patch Festus Hagen 1.62.fh4 - rt.cpan.org #82298
 
 #include "taglib.h"
 
@@ -40,22 +39,6 @@
 
 #if defined(do_close)
 #undef do_close
-#endif
-
-#ifdef __MINGW32__
-
-#ifdef read
-#undef read
-#endif
-
-#ifdef write
-#undef write
-#endif
-
-#ifdef setbuf
-#undef setbuf
-#endif
-
 #endif
 
 MODULE = Audio::TagLib		PACKAGE = Audio::TagLib

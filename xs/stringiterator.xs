@@ -50,9 +50,12 @@ PPCODE:
 //USEWCHAR
 	/* iterator for String */
 	wchar_t & data = **THIS;
-	/* Patch, Festus-01 rt.cpan.org #79474
-       iconv_t codec = iconv_open("UTF8", "WCHAR_T"); */
-	iconv_t codec = iconv_open("UTF-8", "WCHAR_T");
+    /* Festus Hagen 1.62.fh8 - [rt.cpan.org #82529] # */
+    /* WCHAR_T is system dependent. */
+    /* Taglib uses UTF-16BE internally */
+    /* UTF-16LE is what Perl uses internally? */
+    /*iconv_t codec = iconv_open("UTF-8", "WCHAR_T");*/
+    iconv_t codec = iconv_open("UTF-8", "UTF-16LE");
 	if(codec == (iconv_t)(-1))
 		croak("iconv_open failed");
 	char *inbuf, *outbuf;

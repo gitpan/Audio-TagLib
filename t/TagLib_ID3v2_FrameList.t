@@ -45,7 +45,7 @@ my $j = $tag->frameList();
 # is the Title, etc from above.
 $i->insert($i->end(), $j->front());
 
-# Ao, we get the front item from $i, and verify that its the title
+# So, we get the front item from $i, and verify that its the title
 # thus verifying that its what was inserted first
 like($i->front()->render()->data(), qr/^TIT2.*?title$/) 		            or 
 	diag("method insert(it, item) & front() failed");
@@ -59,11 +59,8 @@ like($i->back()->render()->data(), qr/^TIT2.*?title$/) 			            or
 #   Failed test at t/TagLib_ID3v2_FrameList.t line 42.
 #                   'TIT2<80><80><80>^F<80><80><80>title'
 #     doesn't match '(?^:^TPE1.*?artist$)'
-# sortedInsert is defined for FrmeList, and inserts the value into an already-sorted list 
+# sortedInsert is defined for FrameList, and inserts the value into an already-sorted list 
 $i->sortedInsert($j->getItem(1));
-# The result here was inconsistent, perldb giving a result consistent with the
-# complaint above, while normal testing was OK. Adding the parens around the 
-# call to getItem solved the problem
 like(($i->getItem(1))->render()->data(), qr/^TPE1.*?artist$/) 	            or 
 	diag("method sortedInsert(item) and getItem(i) failed");
 $i->append($j->getItem(2));

@@ -1,4 +1,4 @@
-use Test::More tests => 15;
+use Test::More tests => 14;
 
 BEGIN { use_ok('Audio::TagLib::APE::Item') };
 
@@ -22,6 +22,7 @@ is($i->key()->toCString(), $key->toCString()) 			             or
 	diag("method key() failed");
 is($i->value()->data(),  undef) 				                     or 
 	diag("method value() failed");
+
 # Patch Festus-03 rt.cpan.org #79942
 #cmp_ok($i->size(), "==", 13) 							             or 
 #
@@ -31,10 +32,17 @@ is($i->value()->data(),  undef) 				                     or
 #     $value     = 14 (This is a test)
 #     $i->size() = 27
 #
-cmp_ok($i->size(), "==", 27)                                        or 
+
+# Mod for 1.63 - Make the size version-dependent
+# Algorithm changed in v1.8.0.
+
+$ver = qx{taglib-config --version};
+chomp $ver;
+$is18 = $ver ge '1.8';
+
+$size = $is18  ? 27 : 13;
+cmp_ok($i->size(), "==", $size, "Using taglib $ver")                                        or 
     diag("method size() failed");
-is($i->toString()->toCString(), $value->toCString())                or
-    diag("method toString() failed");
 is($i->toString()->toCString(), $value->toCString()) 	             or 
 	diag("method toString() failed");
 is($i->toStringList()->toString()->toCString(), $value->toCString()) or

@@ -1,7 +1,6 @@
 use 5.008001;
 use ExtUtils::MakeMaker;
 use Config;
-use File::Spec;
 
 sub bail($) {
     my $reason = shift;
@@ -10,6 +9,8 @@ sub bail($) {
 }
 
 # Patch Festus Hagen rt.cpan.org #79942
+# Patch Festus Hagen 1.62.fh1 - rt.cpan.org #82298
+
 my $tl_static = 'false';
 foreach (@ARGV) {
     if ($_ =~ m/TAGLIB_STATIC/is) {
@@ -21,11 +22,13 @@ foreach (@ARGV) {
 # Note that this depends on the search path -- 
 # If the one you want is down-path, then modify your
 # PATH environment variable, or edit for a fixed path
+# WINDOWS NOTE: Taglib library names:
+#   For a shared Taglib build:
+#     libtag.dll and libtag.dll.a
+#   For a static Taglib build:
+#     libtag.a
 
-my $devnull = File::Spec->devnull();
 # Patch Festus Hagen rt.cpan.org #79942
-#bail("Please install the taglib C++ library first. \nI need the package that has taglib-config")
-#unless system("taglib-config --version > $devnull") == 0;
 if ($Config{'osname'} eq 'MSWin32') {
     bail("\nPlease install the taglib C++ library.\n  taglib-config.cmd needs to be located via the PATH statement.\n")
         unless system('taglib-config --version > NUL') == 0;
@@ -87,9 +90,6 @@ elsif ( $Config{'osname'} eq 'MSWin32' ) {
         $libs .= '.dll -llibiconv';
     }
 }
-elsif ( $Config{'osname'} =~ m{win32}i ) {
-    $define = '-DTAGLIB_STATIC';
-}
 
 #$Verbose = 2;
 WriteMakefile(
@@ -124,7 +124,6 @@ WriteMakefile(
      "CONFIGURE_REQUIRES" => {
         "ExtUtils::MakeMaker" => 0,
         "Config"              => 0,
-        "File::Spec"          => 0,
     },
     "META_MERGE" => {
         "no_index" => {

@@ -29,8 +29,7 @@
       "configure" : {
          "requires" : {
             "Config" : "0",
-            "ExtUtils::MakeMaker" : "0",
-            "File::Spec" : "0"
+            "ExtUtils::MakeMaker" : "0"
          }
       },
       "runtime" : {
@@ -45,5 +44,5 @@
       }
    },
    "release_status" : "stable",
-   "version" : "1.62"
+   "version" : "1.63"
 }

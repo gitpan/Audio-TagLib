@@ -74,6 +74,10 @@ cmp_ok($i->extendedHeader(), '==', 1)                                       or
 cmp_ok($i->footerPresent(), '==', 1)                                        or
 	diag("method footerPresent() failed");
 
+$ver = qx{taglib-config --version};
+chomp $ver;
+$is18 = $ver ge '1.8';
+
 # Render changes things a bit
 # The point to this test is to demonstrate that the
 # render() method discards non-current values in the header.
@@ -94,11 +98,15 @@ cmp_ok($i->footerPresent(), '==', 1)                                        or
 #     extendedHeader
 #     footerPresent
 #
-$new_head = "ID3\x{02}\x{0}\x{20}\x{0}\x{0}\x{0}\x{0}";
+
+# Mod for 1.63 - Make the data version-dependent
+
+$new_head = $is18 ? "ID3\x{02}\x{0}\x{20}\x{0}\x{0}\x{0}\x{0}" :
+                    "ID3\x{04}\x{0}\x{20}\x{0}\x{0}\x{0}\x{0}";
 $new_data = Audio::TagLib::ByteVector->new($new_head, 10);
 $new = convert_bytevector($new_data);
 $render = convert_bytevector($i->render());
-cmp_deeply($new, $render)                                                   or
+cmp_deeply($new, $render, "Using taglib $ver")                                                   or
     diag("method render() failed");
 
 # Demonstrate that illegal header data is accepted 
