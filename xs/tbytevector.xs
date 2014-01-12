@@ -36,10 +36,10 @@ CODE:
 					TagLib::ByteVector(SvPV_nolen(ST(1)), 
 					SvUV(ST(2)));
 			} else {
-				croak("Usage: TagLib::ByteVector::->(...)");
+				croak("Params type error: TagLib::ByteVector::->(...)");
 			}
 		} else {
-			croak("Usage: TagLib::ByteVector::->(...)");
+			croak( "Params number error: TagLib::ByteVector::->(...)");
 		}
 		break;
 	case 2:

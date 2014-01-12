@@ -98,13 +98,21 @@ PPCODE:
 
 #endif
 
-#ifdef MOREMETHODS
+#ifdef MOREMETHODS 
 
 bool 
 TagLib::APE::ItemListMap::Iterator::equal(i)
 	TagLib::APE::ItemListMap::Iterator * i
 CODE:
 	RETVAL = THIS->operator==(*i);
+OUTPUT:
+	RETVAL
+
+bool 
+TagLib::APE::ItemListMap::Iterator::notEqual(i)
+	TagLib::APE::ItemListMap::Iterator * i
+CODE:
+	RETVAL = THIS->operator!=(*i);
 OUTPUT:
 	RETVAL
 

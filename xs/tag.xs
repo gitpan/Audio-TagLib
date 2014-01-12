@@ -1,6 +1,7 @@
 #include "tag.h"
 
-MODULE = Audio::TagLib			PACKAGE = Audio::TagLib::Tag
+MODULE = Audio::TagLib		PACKAGE = Audio::TagLib::Tag
+
 PROTOTYPES: ENABLE
 
 ################################################################
@@ -90,13 +91,19 @@ CODE:
 void 
 TagLib::Tag::setYear(i)
 	unsigned int i
+CODE:
+	THIS->setYear(i);
 
 void 
 TagLib::Tag::setTrack(i)
 	unsigned int i
+CODE:
+	THIS->setTrack(i);
 
 bool 
 TagLib::Tag::isEmpty()
+CODE:
+	THIS->isEmpty();
 
 ################################################################
 # 

@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.63';
+our $VERSION = '1.64_1';
 
 use Audio::TagLib;
 
@@ -136,6 +136,10 @@ but does not modify them in memory, so later calls to save() which
 make use of these tags will remain valid. This also strips empty
 tags. 
 
+=item I<BOOL save(PV $tags, BOOL $stripOthers, INT $id3v2version)>
+
+As above, and specifies the ID3V2 version, 3 or 4.
+
 =item I<L<ID3v2::Tag|Audio::TagLib::ID3v2::Tag> ID3v2Tag(BOOL $create =
 FALSE)>
 
@@ -257,7 +261,7 @@ Geoffrey Leach GLEACH@cpan.org
 
 Copyright (C) 2005-2010 by Dongxu Ma
 
-Copyright (C) 2011 - 2012 Geoffrey Leach
+Copyright (C) 2011 - 2013 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

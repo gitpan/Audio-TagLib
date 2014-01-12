@@ -91,7 +91,7 @@ The solution is found in the definitions in TagLib.xs
 COPYRIGHT AND LICENCE
 
 Copyright (C) 2005 - 2010 by Dongxu Ma
-Copyright (C) 2011- 2012 Geoffrey Leach
+Copyright (C) 2011- 2013 Geoffrey Leach
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.7 or,

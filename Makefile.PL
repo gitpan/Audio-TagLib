@@ -1,6 +1,7 @@
 use 5.008001;
 use ExtUtils::MakeMaker;
 use Config;
+use English;
 
 sub bail($) {
     my $reason = shift;
@@ -28,6 +29,9 @@ foreach (@ARGV) {
 #   For a static Taglib build:
 #     libtag.a
 
+# For RT 664415
+my $perl_version = substr($PERL_VERSION, 3, 2) < 12 ? ' -DPERLV_LESS_12' : '';
+
 # Patch Festus Hagen rt.cpan.org #79942
 if ($Config{'osname'} eq 'MSWin32') {
     bail("\nPlease install the taglib C++ library.\n  taglib-config.cmd needs to be located via the PATH statement.\n")
@@ -46,7 +50,7 @@ my $CC = 'g++';
 chomp(my $libs   = qx{taglib-config --libs});
 
 # Configure compile flags
-my $cflags = $Config{'ccflags'};
+my $cflags = $Config{'ccflags'} . $perl_version;
 
 # Configure includes
 # ./include has a needed .h
@@ -63,7 +67,8 @@ if ( $Config{'osname'} eq 'darwin' ) {
     $define = '-D_BSD_ICONV -DNO_DOXYGEN';
     $libs .= ' -L/System/Library/Perl/lib/'. $Config{version}. ' -lperl -liconv';
 }
-elsif ( $Config{'osname'} eq 'freebsd' ) {
+elsif ( $Config{'osname'} eq 'freebsd' ||  $Config{'osname'} eq 'solaris' ) {
+    # 'solaris' added to get _BSD_ICONV defined
     $define = '-D_BSD_ICONV -DNO_DOXYGEN';
 # Patch Festus Hagen rt.cpan.org #79942
 #   $libs .= ' -liconv';

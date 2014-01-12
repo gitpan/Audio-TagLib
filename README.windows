@@ -1,7 +1,7 @@
 To build/use Audio::Taglib on Windows, here are the steps, courtesy of
 Festus Hagen <festushagen2002 AT yahoo DOT com>
 
-NOTICE! At the time of this writing (12/26/2012), Taglib v1.9 has not
+NOTICE! At the time of this writing (12/26/2013), Taglib v1.9 has not
  been released, However you can use current source at the
  official Taglib repository: https://github.com/taglib/taglib
 

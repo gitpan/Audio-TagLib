@@ -99,13 +99,21 @@ PPCODE:
 
 #endif
 
-#ifdef MOREMETHODS
+#ifdef MOREMETHODS 
 
 bool 
 TagLib::Ogg::FieldListMap::Iterator::equal(i)
 	TagLib::Ogg::FieldListMap::Iterator * i
 CODE:
 	RETVAL = THIS->operator==(*i);
+OUTPUT:
+	RETVAL
+
+bool 
+TagLib::Ogg::FieldListMap::Iterator::notEqual(i)
+	TagLib::Ogg::FieldListMap::Iterator * i
+CODE:
+	RETVAL = THIS->operator!=(*i);
 OUTPUT:
 	RETVAL
 

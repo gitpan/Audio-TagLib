@@ -23,3 +23,9 @@ cmp_ok(Audio::TagLib::ID3v2::Frame->headerSize(2), "==", 6) 				        or
 cmp_ok(Audio::TagLib::ID3v2::Frame->textDelimiter("Latin1")->Audio::TagLib::ByteVector::data(),
     "eq", "\c@")                                                                    or 
 	diag("method textDelimiter(Latin1) failed");
+# GCL test frame creation
+my $tag = Audio::TagLib::ByteVector->new("TIT2");
+my $stringlist = Audio::TagLib::StringList->new(Audio::TagLib::String->new("IS TITLE"));
+print "Create frame\n";
+my $frame = Audio::TagLib::ID3v2::TextIdentificationFrame->new($tag);
+    $frame->setText(Audio::TagLib::String->new('Twas brillig'));

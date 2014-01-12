@@ -152,8 +152,30 @@ PREINIT:
 	TagLib::MPEG::File::TagTypes tags;
 	char * type;
 	bool stripOthers;
+    int id3v2version;
 CODE:
 	switch(items) {
+	case 4:
+		if(SvPOK(ST(1)))
+			type = SvPV_nolen(ST(1));
+		else
+			croak("ST(1) is not a valid string");
+		if(strncasecmp(type, "NoTags", 6) == 0)
+			tags = TagLib::MPEG::File::NoTags;
+		else if(strncasecmp(type, "ID3v1", 5) == 0)
+			tags = TagLib::MPEG::File::ID3v1;
+		else if(strncasecmp(type, "ID3v2", 5) == 0)
+			tags = TagLib::MPEG::File::ID3v2;
+		else if(strncasecmp(type, "APE", 3) == 0)
+			tags = TagLib::MPEG::File::APE;
+		else if(strncasecmp(type, "AllTags", 7) == 0)
+			tags = TagLib::MPEG::File::AllTags;
+		else 
+			croak("ST(1) is not of type MPEG::File::TagTypes");
+		stripOthers = SvTRUE(ST(2));
+        id3v2version = SvUV(ST(3));
+		RETVAL = THIS->save(tags, stripOthers, id3v2version);
+		break;
 	case 3:
 		if(SvPOK(ST(1)))
 			type = SvPV_nolen(ST(1));

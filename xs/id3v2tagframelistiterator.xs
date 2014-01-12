@@ -100,13 +100,21 @@ PPCODE:
 
 #endif
 
-#ifdef MOREMETHODS
+#ifdef MOREMETHODS 
 
 bool 
 TagLib::ID3v2::FrameList::Iterator::equal(i)
 	TagLib::ID3v2::FrameList::Iterator * i
 CODE:
 	RETVAL = THIS->operator==(*i);
+OUTPUT:
+	RETVAL
+
+bool 
+TagLib::ID3v2::FrameList::Iterator::notEqual(i)
+	TagLib::ID3v2::FrameList::Iterator * i
+CODE:
+	RETVAL = THIS->operator!=(*i);
 OUTPUT:
 	RETVAL
 

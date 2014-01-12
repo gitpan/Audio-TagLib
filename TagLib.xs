@@ -1,7 +1,7 @@
 /***************************************************************************
     copyright            : (C) 2005 - 2010 by Dongxu Ma
     email                : dongxu@cpan.org
-    copyright            : (C) 2011 - 2012 - Geoffrey Leach
+    copyright            : (C) 2011 - 2013 - Geoffrey Leach
     email                : gleach@cpan.org
  ***************************************************************************
  *   This library is free software; you can redistribute it and/or modify 

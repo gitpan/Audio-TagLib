@@ -202,7 +202,12 @@ INIT:
 	std::string string = THIS->to8Bit(unicode);
 CODE:
 	RETVAL = newSVpv(string.c_str(), 0);
+    // RT 664415
+#ifdef PERLV_LESS_12
 	if(sv_len_utf8(RETVAL) != sv_len(RETVAL))
+#else
+    if(!is_ascii_string((const U8 *)string.c_str(), 0)) /* RT 85621 */
+#endif
 		SvUTF8_on(RETVAL);
 OUTPUT:
 	RETVAL
@@ -214,7 +219,12 @@ INIT:
 	const char *c_str = THIS->toCString(unicode);
 CODE:
 	RETVAL = newSVpv(c_str, 0);
+    // RT 664415
+#ifdef PERLV_LESS_12
 	if(sv_len_utf8(RETVAL) != sv_len(RETVAL))
+#else
+    if(!is_ascii_string((const U8 *)c_str,0)) /* RT 85621 */
+#endif
 		SvUTF8_on(RETVAL);
 OUTPUT:
 	RETVAL

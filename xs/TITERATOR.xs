@@ -61,7 +61,7 @@ PPCODE:
     /* Taglib uses UTF-16BE internally */
     /* UTF-16LE is what Perl uses internally? */
     /*iconv_t codec = iconv_open("UTF8", "WCHAR_T");*/
-    iconv_t codec = iconv_open("UTF8", "UTF-16LE");
+    iconv_t codec = iconv_open("UTF-8", "UTF-16LE");
 	if(codec == (iconv_t)(-1))
 		croak("iconv_open failed");
 	char *inbuf, *outbuf;
@@ -136,13 +136,21 @@ PPCODE:
 
 #endif
 
-#ifdef MOREMETHODS
+#ifdef MOREMETHODS 
 
 bool 
 _NAMESPACE_::equal(i)
 	_NAMESPACE_ * i
 CODE:
 	RETVAL = THIS->operator==(*i);
+OUTPUT:
+	RETVAL
+
+bool 
+_NAMESPACE_::notEqual(i)
+	_NAMESPACE_ * i
+CODE:
+	RETVAL = THIS->operator!=(*i);
 OUTPUT:
 	RETVAL
 

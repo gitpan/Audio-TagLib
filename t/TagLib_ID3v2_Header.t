@@ -87,7 +87,7 @@ $is18 = $ver ge '1.8';
 
 # Patch Festus-03 rt.cpan.org #79942
 #$new_head = "ID3\x{04}\x{0}\x{20}\x{0}\x{0}\x{0}\x{0}";
-# 9/25/2012
+# 9/25/2013
 # According to taglib-1.8/taglib/mpeg/id3v2/id3v2header.cpp:render()
 # The version is always set to 2.4.0 (4.0), however as of taglib-1.8
 #   The majorVersion is carried through as is.
