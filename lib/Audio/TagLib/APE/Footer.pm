@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.1';
 
 use Audio::TagLib;
 
@@ -79,7 +79,7 @@ Returns the number of items in the tag.
 
 =item I<void setItemCount(IV $s)>
 
-Set the item count to $s.  See L<The doc for itemCount|itemCount()>
+Set the item count to $s.  See L<The doc for itemCount|itemCount>
 
 =item I<UV tagSize()>
 
@@ -88,19 +88,19 @@ Returns the tag size in bytes.  This is the size of the frame content
  The size of the entire tag will be this plus the header size, if
   present.
 
-see L<The doc for completeTagSize|completeTagSize()>
+see L<The doc for completeTagSize|completeTagSize>
 
 =item I<UV completeTagSize()>
 
 Returns the tag size, including if present, the header size.
 
-see L<The doc for tagSize|tagSize()>
+see L<The doc for tagSize|tagSize>
 
 =item I<void setTagSize(UV $s)>
 
 Set the tag size to $s.
 
-see L<The doc for tagSize|tagSize()>
+see L<The doc for tagSize|tagSize>
 
 =item I<UV size()> [static]
 

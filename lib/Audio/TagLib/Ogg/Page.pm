@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.1';
 
 use Audio::TagLib;
 
@@ -93,7 +93,7 @@ see I<firstPacketIndex()>
 
 =item %_ContainsPacketFlags
 
-Deprecated. See L<contains_package_flags()|contains_package_flags()>
+Deprecated. See L<contains_package_flags()|contains_package_flags>
 
 =item contains_package_flags()
 
@@ -132,7 +132,7 @@ Renders the page to binary format.
 
 =item %_PaginationStrategy
 
-Deprecated. See L<pagination_strategy()|pagination_strategy()>
+Deprecated. See L<pagination_strategy()|pagination_strategy>
 
 =item pagination_strategy()
 

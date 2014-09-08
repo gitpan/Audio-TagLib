@@ -1,4 +1,5 @@
 script/update_template.sh and related .pl files
+(or update_template.cmd if you're running Windoze)
 take the three capital letter xs (template) files:
 
     1. xs/TITERATOR.xs

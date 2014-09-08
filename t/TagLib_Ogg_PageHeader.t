@@ -54,8 +54,5 @@ cmp_ok($i->size(), "==", 0) 									or
 	diag("method size() failed");
 cmp_ok($i->dataSize(), "==", 0) 								or 
 	diag("method dataSize() failed");
-SKIP: {
-skip "render() skipped", 1 if 1;
-like($i->render(), qr(\d{9})) 									or 
+like($i->render(), qr(\d+)) 									or 
 	diag("method render() failed");
-}

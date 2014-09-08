@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.1';
 
 use Audio::TagLib;
 
@@ -30,7 +30,7 @@ fields
 This is an attempt to abstract away the difference in the meta data
 formats of various audio codecs and tagging schemes. As such it is
 generally a subset of what is available in the specific formats but
-should be suitable for most applications. This is meant to complient
+should be suitable for most applications. This is meant to compliment
 the generic APIs found in Audio::TagLib::AudioProperties, Audio::TagLib::File and
 Audio::TagLib::FileRef. 
 

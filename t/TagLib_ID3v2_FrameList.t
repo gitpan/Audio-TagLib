@@ -14,10 +14,6 @@ isa_ok($i, "Audio::TagLib::ID3v2::FrameList")							    or
 isa_ok(Audio::TagLib::ID3v2::FrameList->new($i), 
 	"Audio::TagLib::ID3v2::FrameList") 								        or 
 	diag("method new(framelist) failed");
-SKIP: {
-skip "copy(m) skipped", 0
-	 if 1;
-}
 
 isa_ok($i->begin(), "Audio::TagLib::ID3v2::FrameList::Iterator") 		    or 
 	diag("method begin() failed");
@@ -101,7 +97,7 @@ skip "skip STORESIZE & EXTEND", 0 if 1;
 ok(exists($i[0])) 												            or 
 	diag("method EXISTS failed");
 ok(not exists($i[10])) 											            or 
-	diag("method EXISTS failed");
+	diag("method not EXISTS failed");
 delete($i[0]);
 ok(not exists($i[0])) 											            or 
 	diag("method DELETE failed");

@@ -1,7 +1,8 @@
-use 5.008001;
+use 5.10.0;
 use ExtUtils::MakeMaker;
 use Config;
 use English;
+use version 0.77;
 
 sub bail($) {
     my $reason = shift;
@@ -12,24 +13,16 @@ sub bail($) {
 # Patch Festus Hagen rt.cpan.org #79942
 # Patch Festus Hagen 1.62.fh1 - rt.cpan.org #82298
 
-my $tl_static = 'false';
+my $tl_static = 0;
 foreach (@ARGV) {
-    if ($_ =~ m/TAGLIB_STATIC/is) {
-      $tl_static = 'true';
-    }
+    $tl_static++  if /^.?.?TAGLIB_STATIC$/i;
 }
 
 # Check TagLib (taglib.so) is installed.
 # Note that this depends on the search path -- 
 # If the one you want is down-path, then modify your
 # PATH environment variable, or edit for a fixed path
-# WINDOWS NOTE: Taglib library names:
-#   For a shared Taglib build:
-#     libtag.dll and libtag.dll.a
-#   For a static Taglib build:
-#     libtag.a
 
-# For RT 664415
 my $perl_version = substr($PERL_VERSION, 3, 2) < 12 ? ' -DPERLV_LESS_12' : '';
 
 # Patch Festus Hagen rt.cpan.org #79942
@@ -41,7 +34,12 @@ if ($Config{'osname'} eq 'MSWin32') {
         unless system('taglib-config --version > /dev/null') == 0;
 }
   
+# No guarantees what tatlib-config will say about the number
+# version.pm is only in core beginning with 5.10.0
 chomp(my $libver = qx{taglib-config --version});
+if ( version->parse($libver)->normal < version->parse('v1.9.1') ) {
+    die "Audio::TagLibb has been tested with taglib 1.9.1 or greater\n"
+}
 
 # Configure compiler
 my $CC = 'g++';
@@ -72,7 +70,7 @@ elsif ( $Config{'osname'} eq 'freebsd' ||  $Config{'osname'} eq 'solaris' ) {
     $define = '-D_BSD_ICONV -DNO_DOXYGEN';
 # Patch Festus Hagen rt.cpan.org #79942
 #   $libs .= ' -liconv';
-    if ($tl_static eq 'true') {
+    if ($tl_static) {
         print "Statically linking with Taglib...\n";
         $define .= ' -DTAGLIB_STATIC';
         $libs .= ' -liconv -lz';
@@ -83,7 +81,7 @@ elsif ( $Config{'osname'} eq 'freebsd' ||  $Config{'osname'} eq 'solaris' ) {
 }
 elsif ( $Config{'osname'} eq 'MSWin32' ) {
     $define = '-DNO_DOXYGEN';
-    if ($tl_static eq 'true') {
+    if ($tl_static) {
         # Taglib is built Static. (libtag.a)
         print "Statically linking with Taglib...\n";
         $define .= ' -DTAGLIB_STATIC';
@@ -99,7 +97,7 @@ elsif ( $Config{'osname'} eq 'MSWin32' ) {
 #$Verbose = 2;
 WriteMakefile(
     NAME              => 'Audio::TagLib',
-    MIN_PERL_VERSION  => '5.008001',
+    MIN_PERL_VERSION  => '5.10.0',
     VERSION_FROM      => 'lib/Audio/TagLib.pm', 
     LICENSE           => 'perl',
     CC                => $CC,
@@ -120,15 +118,15 @@ WriteMakefile(
         : ()
     ),
     PREREQ_PM => {
-        "Encode"       => 0,
-        "Test::Deep"   => 0,
-        "File::Slurp"  => 0,
-        "Test::More"   => 0,
-        "Test::Output" => 0,
+        "Encode"         => 0,
+        "Test::Deep"     => 0,
+        "Test::More"     => 0,
+        "Test::Simple"   => 0.99,
     },
      "CONFIGURE_REQUIRES" => {
         "ExtUtils::MakeMaker" => 0,
         "Config"              => 0,
+        "version"             => 0.77,
     },
     "META_MERGE" => {
         "no_index" => {

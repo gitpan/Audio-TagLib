@@ -1,4 +1,4 @@
-use Test::More tests => 19;
+use Test::More tests => 20;
 
 BEGIN { use_ok('Audio::TagLib::ID3v2::FrameListMap') };
 
@@ -10,13 +10,12 @@ can_ok("Audio::TagLib::ID3v2::FrameListMap", @methods) 				           or
 my $i = Audio::TagLib::ID3v2::FrameListMap->new();
 isa_ok($i, "Audio::TagLib::ID3v2::FrameListMap") 						       or 
 	diag("method new() failed");
-isa_ok(Audio::TagLib::ID3v2::FrameListMap->new($i), 
-	"Audio::TagLib::ID3v2::FrameListMap") 								       or 
+my $c = Audio::TagLib::ID3v2::FrameListMap->new($i); 
+isa_ok($c, "Audio::TagLib::ID3v2::FrameListMap") 					           or 
 	diag("method new(map) failed");
-SKIP: {
-skip "copy(m) skipped", 0
-	 if 1;
-}
+my $m = $i->copy($c);
+isa_ok($m, "Audio::TagLib::ID3v2::FrameListMap") 						       or 
+	diag("method copy(map) failed");
 
 isa_ok($i->begin(), "Audio::TagLib::ID3v2::FrameListMap::Iterator") 	       or 
 	diag("method begin() failed");

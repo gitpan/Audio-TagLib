@@ -29,20 +29,20 @@
       "configure" : {
          "requires" : {
             "Config" : "0",
-            "ExtUtils::MakeMaker" : "0"
+            "ExtUtils::MakeMaker" : "0",
+            "version" : "0.77"
          }
       },
       "runtime" : {
          "requires" : {
             "Encode" : "0",
-            "File::Slurp" : "0",
             "Test::Deep" : "0",
             "Test::More" : "0",
-            "Test::Output" : "0",
-            "perl" : "5.008001"
+            "Test::Simple" : "0.99",
+            "perl" : "5.010000"
          }
       }
    },
-   "release_status" : "testing",
-   "version" : "1.64_1"
+   "release_status" : "stable",
+   "version" : "1.64"
 }

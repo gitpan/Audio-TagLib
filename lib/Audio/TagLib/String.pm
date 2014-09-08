@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.1';
 
 use Audio::TagLib;
 
@@ -69,8 +69,6 @@ possible encodings, which are the four supported by the ID3v2
 standard. 
 
 =over 
-
-=item 
 
 =item %_Type
 

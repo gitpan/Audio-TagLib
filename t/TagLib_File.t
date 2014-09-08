@@ -1,6 +1,4 @@
 use Test::More tests => 13;
-use Test::Output;
-use File::Slurp;
 
 BEGIN { use_ok('Audio::TagLib::File') };
 

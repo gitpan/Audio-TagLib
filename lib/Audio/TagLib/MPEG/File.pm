@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.1';
 
 use Audio::TagLib;
 
@@ -227,7 +227,7 @@ current position as start
 
 =item %_TagTypes
 
-Deprecated. See L<tag_types()|tag_types()>
+Deprecated. See L<tag_types()|tag_types>
 
 =item tag_types{}
 

@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.1';
 
 use Audio::TagLib;
 
@@ -26,7 +26,7 @@ Audio::TagLib::ID3v2 - Classes in this namespace
 =head1 SYNOPSIS
 
   use Audio::TagLib::ID3v2;
-  
+
 =head1 DESCRIPTION
 
 There is no C++ imlementation corresponding to this file. Rather, there is a
@@ -67,12 +67,17 @@ Note:
 See also:
     L<ID3v2::Tag::addFrame()|ID3v2/Tag.html#addFrame>
 
-=head2 L<FrameListMap|ID3v2/FrameListMap.html>
+=head2 FrameListMap|ID3v2/FrameListMap.html
 
-=head2 L<FrameList|ID3v2/FrameList.html>
+L<FrameListMap|ID3v2/FrameListMap.html>
 
+=head2 FrameList|ID3v2/FrameList.html
 
-=head2 L<Frame|ID3v2/Frame.html>
+L<FrameList|ID3v2/FrameList.html>
+
+=head2 Frame|ID3v2/Frame.html
+
+L<Frame|ID3v2/Frame.html>
 
 ID3v2 frame implementation.
 
@@ -126,14 +131,10 @@ a FileRef object (which see), but working with a File
 object is difficult, because its new() is hard to find.
 Try this:
 
-=over
-
  $file = "sample/guitar.mp3";
  $tagOffset = 0;
  $file_object = Audio::TagLib::MPEG::File->new($file, $tagOffset);
  $file_tag_object = $file_object->ID3v2Tag();
-
-=back
 
 Note:
     All pointers to data structures within the tag will become invalid when the tag is destroyed.

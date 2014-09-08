@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.1';
 
 use Audio::TagLib;
 
@@ -50,12 +50,11 @@ is sufficient for most applications.
 
 =item %_ReadStyle
 
-=over 4
-C<our %_ReadStyle = (
+ our %_ReadStyle = (
     "Fast"     => 0,
     "Average"  => 1,
     "Accurate" => 2,
-);>
+ );
 
 Deprecated. See read_style.
 

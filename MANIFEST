@@ -4,9 +4,12 @@ Makefile.PL
 README
 README.updateiterator
 README.windows
+README.byteorder
 TODO
 TagLib.xs
 include/iconv_wrap.h
+include/Copy.pm
+include/MPEG_Header.pm
 lib/Audio/TagLib.pm
 lib/Audio/TagLib/APE/Footer.pm
 lib/Audio/TagLib/APE/Item.pm
@@ -74,8 +77,10 @@ sample/guitar-tags.mp3
 sample/guitar.ogg
 sample/guitar.flac
 sample/guitar.wav
+sample/empty_flac.ogg
 script/fix_dcls.pl
 script/update_template.sh
+script/update_template.cmd
 script/update_template/apeitemlistmap.pl
 script/update_template/apeitemlistmapiterator.pl
 script/update_template/bytevectoriterator.pl

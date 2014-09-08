@@ -76,6 +76,13 @@ OUTPUT:
 	RETVAL
 
 int 
+TagLib::MPEG::Header::samplesPerFrame()
+CODE:
+	RETVAL = THIS->samplesPerFrame();
+OUTPUT:
+	RETVAL
+
+int 
 TagLib::MPEG::Header::sampleRate()
 CODE:
 	RETVAL = THIS->sampleRate();

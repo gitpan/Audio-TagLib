@@ -52,6 +52,13 @@ PPCODE:
 	} else
 		XSRETURN_UNDEF;
 
+bool
+TagLib::Ogg::FLAC::File::hasXiphComment()
+CODE:
+    RETVAL = THIS->hasXiphComment();
+OUTPUT:
+    RETVAL
+
 bool 
 TagLib::Ogg::FLAC::File::save()
 CODE:

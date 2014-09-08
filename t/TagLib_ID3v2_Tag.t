@@ -4,9 +4,9 @@ BEGIN { use_ok('Audio::TagLib::ID3v2::Tag');
         use_ok('Audio::TagLib::MPEG::File') };
 
 my @methods = qw(new DESTROY title artist album comment genre year
-track setTitle setArtist setAlbum setComment setGenre setYear setTrack
-isEmpty header extendedHeader footer frameListMap frameList addFrame
-removeFrame removeFrames render);
+                 track setTitle setArtist setAlbum setComment setGenre setYear setTrack
+                 isEmpty header extendedHeader footer frameListMap frameList addFrame
+                 removeFrame removeFrames render);
 can_ok("Audio::TagLib::ID3v2::Tag", @methods) 								or 
 	diag("can_ok #1 failed");
 can_ok("Audio::TagLib::MPEG::File", qw(ID3v2Tag)) 							or 

@@ -63,19 +63,8 @@ INCLUDE:	xs/flacproperties.xs
 INCLUDE:	xs/mpcproperties.xs
 INCLUDE:	xs/mpegproperties.xs
 
-#ifdef DOXYGEN
-
-INCLUDE:	xs/oggvorbisproperties.xs
-INCLUDE:	xs/oggvorbisfile.xs
-
-#endif
-
-#ifdef NO_DOXYGEN
-
 INCLUDE:	xs/vorbisproperties.xs
 INCLUDE:	xs/vorbisfile.xs
-
-#endif
 
 INCLUDE:	xs/tfile.xs
 INCLUDE:	xs/fileref.xs

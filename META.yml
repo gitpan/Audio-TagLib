@@ -7,6 +7,7 @@ build_requires:
 configure_requires:
   Config: 0
   ExtUtils::MakeMaker: 0
+  version: 0.77
 dynamic_config: 1
 generated_by: 'ExtUtils::MakeMaker version 6.64, CPAN::Meta::Converter version 2.131560'
 license: perl
@@ -21,9 +22,8 @@ no_index:
     - lib/Audio/TagLib
 requires:
   Encode: 0
-  File::Slurp: 0
   Test::Deep: 0
   Test::More: 0
-  Test::Output: 0
-  perl: 5.008001
-version: 1.64_1
+  Test::Simple: 0.99
+  perl: 5.010000
+version: 1.64

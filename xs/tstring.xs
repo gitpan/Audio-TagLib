@@ -14,7 +14,7 @@ TagLib::String *
 TagLib::String::new(...)
 PROTOTYPE: ;$$
 PREINIT:
-        // Patch Festus-02 rt.cpan.org #79474
+    // Patch Festus-02 rt.cpan.org #79474
 	// char *encode, *fromcode; 
 	const char *encode, *fromcode;
 	enum TagLib::String::Type t;
@@ -202,7 +202,6 @@ INIT:
 	std::string string = THIS->to8Bit(unicode);
 CODE:
 	RETVAL = newSVpv(string.c_str(), 0);
-    // RT 664415
 #ifdef PERLV_LESS_12
 	if(sv_len_utf8(RETVAL) != sv_len(RETVAL))
 #else
@@ -219,7 +218,6 @@ INIT:
 	const char *c_str = THIS->toCString(unicode);
 CODE:
 	RETVAL = newSVpv(c_str, 0);
-    // RT 664415
 #ifdef PERLV_LESS_12
 	if(sv_len_utf8(RETVAL) != sv_len(RETVAL))
 #else
@@ -317,10 +315,12 @@ PREINIT:
 	TagLib::ByteVector tmp;
 CODE:
 	tmp = THIS->data(t);
-	//char *s = tmp.data();
-	//for(int i = 0; i < 4; i++) {
-	//	printf("%d: %c\n", i, s[i]);
+	char *s = tmp.data();
+    //printf("xs data return dump ");
+	//for(int i = 0; i < 8; i++) {
+		//printf("%02x ", s[i] & 0xff);
 	//}
+    //printf("\n");
 	RETVAL = new TagLib::ByteVector(tmp);
 OUTPUT:
 	RETVAL
@@ -360,10 +360,6 @@ CODE:
 	outbuf = mb;
 	inlen = sizeof(wchar_t)/sizeof(char);
     /* Festus Hagen 1.62.fh8 - [rt.cpan.org #82529] # */
-    /* WCHAR_T is system dependent. */
-    /* Taglib uses UTF-16BE internally */
-    /* UTF-16LE is what Perl uses internally? */
-    /*codec = iconv_open("UTF-8", "WCHAR_T");*/
     codec = iconv_open("UTF-8", "UTF-16LE");
 	if(!codec)
 		croak("iconv_open failed in String::_toArray");

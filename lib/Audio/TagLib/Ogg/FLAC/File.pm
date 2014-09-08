@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.1';
 
 use Audio::TagLib;
 
@@ -43,8 +43,7 @@ additional information specific to Ogg FLAC files.
 
 =over
 
-=item I<new(PV $file, BOOL $readProperties = TRUE, PV $propertiesStyle
-= "Average")>
+=item I<new(PV $file, BOOL $readProperties = TRUE, PV $propertiesStyle = "Average")>
 
 Contructs an Ogg/FLAC file from $file. If $readProperties is true the
 file's audio properties will also be read using $propertiesStyle. If

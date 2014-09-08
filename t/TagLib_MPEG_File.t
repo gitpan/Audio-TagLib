@@ -1,4 +1,7 @@
-use Test::More tests => 14;
+use Test::More tests => 16;
+
+use lib './include';
+use Copy;
 
 BEGIN { use_ok('Audio::TagLib::MPEG::File') };
 
@@ -26,12 +29,6 @@ isa_ok($i->APETag(1), "Audio::TagLib::APE::Tag") 					or
 	diag("method APETag(t) failed");
 ok($i->strip("APE")) 											    or 
 	diag("method strip(tags) failed");
-$i->setID3v2FrameFactory(Audio::TagLib::ID3v2::FrameFactory->instance());
-SKIP: {
-skip "save(), to aviod stomping test data", 1 if 1;
-ok(not $i->save()) 													or 
-	diag("method save() failed");
-}
 cmp_ok($i->firstFrameOffset(), "==", 104) 							or 
 	diag("method firstFrameOffset() failed");
 cmp_ok($i->nextFrameOffset(925), "==", 940) 						or 
@@ -40,3 +37,11 @@ cmp_ok($i->previousFrameOffset(27690), "==", 27585) 				or
 	diag("method previousFrameOffset(p) failed");
 cmp_ok($i->lastFrameOffset(), "==", -1) 				    		or 
 	diag("method lastFrameOffset() failed");
+ok (Copy::Dup( $file))                                              or
+    diag("method Copy::Dup failed");
+my $nfile = Audio::TagLib::MPEG::File->new(Copy::DupName($file));
+isa_ok($nfile, "Audio::TagLib::MPEG::File")                         or
+    diag("method Audio::TagLib::MPEG::File::new failed");
+ok($nfile->save())											        or 
+	diag("method save() failed");
+Copy::Unlink($file);;

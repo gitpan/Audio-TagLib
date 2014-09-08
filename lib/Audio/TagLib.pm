@@ -4,7 +4,7 @@ use 5.008003;
 use strict;
 use warnings;
 
-our $VERSION = '1.64_1';
+our $VERSION = '1.64';
 
 use XSLoader;
 XSLoader::load( 'Audio::TagLib', $VERSION );
@@ -76,6 +76,7 @@ __END__
 =pod
 
 =begin stopwords
+
 Ogg
 FLAC
 MPC
@@ -94,6 +95,7 @@ param
 AudioProperties
 READONLY
 Dongxu
+
 =end stopwords
 
 =head1 NAME
@@ -125,7 +127,7 @@ between tag and file formats can all be ignored.
 
 =head1 VERSION
 
-1.64_1
+1.64
 
 =head1 DESCRIPTION
 
@@ -218,7 +220,7 @@ I<DESTROY()>.
 =head1 SEE ALSO
 
 The TagLib documentation page.
-http://developer.kde.org/~wheeler/taglib.html
+http://taglib.github.io/
 
 =head1 KNOWN BUGS
 
@@ -236,6 +238,8 @@ Festus Hagen festushagen2002@yahoo.com
 Sisyphus sisyphus@cpan.org
 
 CHOCOLATE choclate@cpan.org
+
+Philip Lyons vorzox@gmail.com
 
 =head1 AUTHOR
 
