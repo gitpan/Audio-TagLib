@@ -38,7 +38,7 @@ if ($Config{'osname'} eq 'MSWin32') {
 # version.pm is only in core beginning with 5.10.0
 chomp(my $libver = qx{taglib-config --version});
 if ( version->parse($libver)->normal < version->parse('v1.9.1') ) {
-    die "Audio::TagLibb has been tested with taglib 1.9.1 or greater\n"
+    die "Audio::TagLibb requires with taglib 1.9.1 or greater\nThis is version $libver\n"
 }
 
 # Configure compiler

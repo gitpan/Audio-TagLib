@@ -26,4 +26,4 @@ requires:
   Test::More: 0
   Test::Simple: 0.99
   perl: 5.010000
-version: 1.64
+version: 1.65_1

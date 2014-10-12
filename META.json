@@ -43,6 +43,6 @@
          }
       }
    },
-   "release_status" : "stable",
-   "version" : "1.64"
+   "release_status" : "testing",
+   "version" : "1.65_1"
 }

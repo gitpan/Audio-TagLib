@@ -1,5 +1,8 @@
 Revision history for Perl extension TagLib.
 
+1.65 Sun Oct 12 08:30:04 PDT 2014
+     Improve taglib version error reporting
+
 1.64
      Tue Jul 15 14:43:36 PDT 2014
      . This is version 1.64. As of this version, code is being maintained under git,

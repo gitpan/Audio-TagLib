@@ -28,6 +28,20 @@ $tag->setGenre(Audio::TagLib::String->new("genre"));
 $tag->setYear(1981);
 $tag->setTrack(3);
 
+sub pit {
+    my ($tag, $it) = @_;
+    my $i = $it->begin();
+    my $s = $it->size();
+    print STDERR "\nDump $tag\n";
+    return if $s == 0;
+    my $n = 0;
+    do {
+        print STDERR $$i->render()->data(), "\n";
+        $n ++;
+        return if $n == $s;
+        $i++;
+    } while 1;
+}
 my $j = $tag->frameList();
 # $j is  List of Frames of Audio::TagLib::ID3v2::Tag and inherits from TagLib::Tag
 # framelist returns the FrameList, frames in the order that they were inserted
@@ -36,9 +50,8 @@ my $j = $tag->frameList();
 # $i is  Audio::TagLib::ID3v2::FrameList
 # Framelist is a List of type Frame (List<Frame>)
 # insert, begin and end are all methods of type List<T>
-# This uses the end() iterator (persumably provides the end of the List)
-# to insert the front item from the framelist $j. which (I'm guessing here)
-# is the Title, etc from above.
+# This uses the end() iterator to insert the front item from the framelist $j.
+# which (I'm guessing here) is the Title, etc from above.
 $i->insert($i->end(), $j->front());
 
 # So, we get the front item from $i, and verify that its the title
@@ -56,13 +69,17 @@ like($i->back()->render()->data(), qr/^TIT2.*?title$/) 			            or
 #                   'TIT2<80><80><80>^F<80><80><80>title'
 #     doesn't match '(?^:^TPE1.*?artist$)'
 # sortedInsert is defined for FrameList, and inserts the value into an already-sorted list 
+pit("front, back TIT2", $i);
 $i->sortedInsert($j->getItem(1));
+pit("sorted TPE1", $i);
 like(($i->getItem(1))->render()->data(), qr/^TPE1.*?artist$/) 	            or 
-	diag("method sortedInsert(item) and getItem(i) failed");
+	diag("method sortedInsert(item) and getItem(1) failed");
 $i->append($j->getItem(2));
+pit("append TALB", $i);
 like($i->back()->render()->data(), qr/^TALB.*?album$/) 			            or 
 	diag("method append(item) failed");
 $i->prepend($j->getItem(3));
+pit("preppend COMM", $i);
 like($i->front()->render()->data(), qr/COMM.*?comment$/) 		            or 
 	diag("method prepend(item) failed");
 $i->clear();
@@ -71,6 +88,7 @@ cmp_ok($i->size(), "==", 0) 									            or
 ok($i->isEmpty()) 												            or 
 	diag("method isEmpty() failed");
 $i->sortedInsert($j->front());
+pit("sorted insert TIT2 front", $i);
 like($i->find($j->front())->data()->render()->data(), qr/^TIT2.*?title$/)   or
     diag("method find(key) failed");
 ok($i->contains($j->front())) 									            or 
